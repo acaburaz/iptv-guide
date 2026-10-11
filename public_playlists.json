@@ -1,0 +1,2076 @@
+{
+  "attribution": "Public playlists published by iptv-org and listed at rhythm98/iptv-vlc.",
+  "page": "https://github.com/rhythm98/iptv-vlc#playlists",
+  "groups": [
+    {
+      "id": "all",
+      "label": "All",
+      "items": [
+        {
+          "name": "All channels",
+          "url": "https://iptv-org.github.io/iptv/index.m3u"
+        },
+        {
+          "name": "All categories",
+          "url": "https://iptv-org.github.io/iptv/index.category.m3u"
+        },
+        {
+          "name": "All languages",
+          "url": "https://iptv-org.github.io/iptv/index.language.m3u"
+        },
+        {
+          "name": "All countries",
+          "url": "https://iptv-org.github.io/iptv/index.country.m3u"
+        }
+      ]
+    },
+    {
+      "id": "category",
+      "label": "Category",
+      "items": [
+        {
+          "name": "Animation",
+          "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
+          "count": 62
+        },
+        {
+          "name": "Auto",
+          "url": "https://iptv-org.github.io/iptv/categories/auto.m3u",
+          "count": 17
+        },
+        {
+          "name": "Business",
+          "url": "https://iptv-org.github.io/iptv/categories/business.m3u",
+          "count": 70
+        },
+        {
+          "name": "Classic",
+          "url": "https://iptv-org.github.io/iptv/categories/classic.m3u",
+          "count": 50
+        },
+        {
+          "name": "Comedy",
+          "url": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
+          "count": 79
+        },
+        {
+          "name": "Cooking",
+          "url": "https://iptv-org.github.io/iptv/categories/cooking.m3u",
+          "count": 32
+        },
+        {
+          "name": "Culture",
+          "url": "https://iptv-org.github.io/iptv/categories/culture.m3u",
+          "count": 170
+        },
+        {
+          "name": "Documentary",
+          "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
+          "count": 110
+        },
+        {
+          "name": "Education",
+          "url": "https://iptv-org.github.io/iptv/categories/education.m3u",
+          "count": 183
+        },
+        {
+          "name": "Entertainment",
+          "url": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
+          "count": 638
+        },
+        {
+          "name": "Family",
+          "url": "https://iptv-org.github.io/iptv/categories/family.m3u",
+          "count": 55
+        },
+        {
+          "name": "General",
+          "url": "https://iptv-org.github.io/iptv/categories/general.m3u",
+          "count": 2454
+        },
+        {
+          "name": "Interactive",
+          "url": "https://iptv-org.github.io/iptv/categories/interactive.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kids",
+          "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
+          "count": 246
+        },
+        {
+          "name": "Legislative",
+          "url": "https://iptv-org.github.io/iptv/categories/legislative.m3u",
+          "count": 185
+        },
+        {
+          "name": "Lifestyle",
+          "url": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
+          "count": 98
+        },
+        {
+          "name": "Movies",
+          "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
+          "count": 389
+        },
+        {
+          "name": "Music",
+          "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
+          "count": 636
+        },
+        {
+          "name": "News",
+          "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
+          "count": 893
+        },
+        {
+          "name": "Outdoor",
+          "url": "https://iptv-org.github.io/iptv/categories/outdoor.m3u",
+          "count": 45
+        },
+        {
+          "name": "Public",
+          "url": "https://iptv-org.github.io/iptv/categories/public.m3u",
+          "count": 41
+        },
+        {
+          "name": "Relax",
+          "url": "https://iptv-org.github.io/iptv/categories/relax.m3u",
+          "count": 4
+        },
+        {
+          "name": "Religious",
+          "url": "https://iptv-org.github.io/iptv/categories/religious.m3u",
+          "count": 735
+        },
+        {
+          "name": "Science",
+          "url": "https://iptv-org.github.io/iptv/categories/science.m3u",
+          "count": 24
+        },
+        {
+          "name": "Series",
+          "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
+          "count": 216
+        },
+        {
+          "name": "Shop",
+          "url": "https://iptv-org.github.io/iptv/categories/shop.m3u",
+          "count": 88
+        },
+        {
+          "name": "Sports",
+          "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
+          "count": 307
+        },
+        {
+          "name": "Travel",
+          "url": "https://iptv-org.github.io/iptv/categories/travel.m3u",
+          "count": 41
+        },
+        {
+          "name": "Weather",
+          "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
+          "count": 16
+        },
+        {
+          "name": "Undefined",
+          "url": "https://iptv-org.github.io/iptv/categories/undefined.m3u",
+          "count": 3245
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "label": "Language",
+      "items": [
+        {
+          "name": "Acoli",
+          "url": "https://iptv-org.github.io/iptv/languages/ach.m3u",
+          "count": 1
+        },
+        {
+          "name": "Adhola",
+          "url": "https://iptv-org.github.io/iptv/languages/adh.m3u",
+          "count": 1
+        },
+        {
+          "name": "Afar",
+          "url": "https://iptv-org.github.io/iptv/languages/aar.m3u",
+          "count": 2
+        },
+        {
+          "name": "Afrikaans",
+          "url": "https://iptv-org.github.io/iptv/languages/afr.m3u",
+          "count": 7
+        },
+        {
+          "name": "Ahom",
+          "url": "https://iptv-org.github.io/iptv/languages/aho.m3u",
+          "count": 1
+        },
+        {
+          "name": "Albanian",
+          "url": "https://iptv-org.github.io/iptv/languages/sqi.m3u",
+          "count": 45
+        },
+        {
+          "name": "Alemannic",
+          "url": "https://iptv-org.github.io/iptv/languages/gsw.m3u",
+          "count": 1
+        },
+        {
+          "name": "Algerian Sign Language",
+          "url": "https://iptv-org.github.io/iptv/languages/asp.m3u",
+          "count": 1
+        },
+        {
+          "name": "Alur",
+          "url": "https://iptv-org.github.io/iptv/languages/alz.m3u",
+          "count": 1
+        },
+        {
+          "name": "Amharic",
+          "url": "https://iptv-org.github.io/iptv/languages/amh.m3u",
+          "count": 6
+        },
+        {
+          "name": "Arabic",
+          "url": "https://iptv-org.github.io/iptv/languages/ara.m3u",
+          "count": 368
+        },
+        {
+          "name": "Armenian",
+          "url": "https://iptv-org.github.io/iptv/languages/hye.m3u",
+          "count": 6
+        },
+        {
+          "name": "Assamese",
+          "url": "https://iptv-org.github.io/iptv/languages/asm.m3u",
+          "count": 9
+        },
+        {
+          "name": "Assyrian Neo-Aramaic",
+          "url": "https://iptv-org.github.io/iptv/languages/aii.m3u",
+          "count": 1
+        },
+        {
+          "name": "Ayizo Gbe",
+          "url": "https://iptv-org.github.io/iptv/languages/ayb.m3u",
+          "count": 1
+        },
+        {
+          "name": "Aymara",
+          "url": "https://iptv-org.github.io/iptv/languages/aym.m3u",
+          "count": 1
+        },
+        {
+          "name": "Azerbaijani",
+          "url": "https://iptv-org.github.io/iptv/languages/aze.m3u",
+          "count": 18
+        },
+        {
+          "name": "Baatonum",
+          "url": "https://iptv-org.github.io/iptv/languages/bba.m3u",
+          "count": 1
+        },
+        {
+          "name": "Bambara",
+          "url": "https://iptv-org.github.io/iptv/languages/bam.m3u",
+          "count": 5
+        },
+        {
+          "name": "Bashkir",
+          "url": "https://iptv-org.github.io/iptv/languages/bak.m3u",
+          "count": 1
+        },
+        {
+          "name": "Basque",
+          "url": "https://iptv-org.github.io/iptv/languages/eus.m3u",
+          "count": 6
+        },
+        {
+          "name": "Belarusian",
+          "url": "https://iptv-org.github.io/iptv/languages/bel.m3u",
+          "count": 4
+        },
+        {
+          "name": "Bengali",
+          "url": "https://iptv-org.github.io/iptv/languages/ben.m3u",
+          "count": 58
+        },
+        {
+          "name": "Bhojpuri",
+          "url": "https://iptv-org.github.io/iptv/languages/bho.m3u",
+          "count": 6
+        },
+        {
+          "name": "Bisa",
+          "url": "https://iptv-org.github.io/iptv/languages/bib.m3u",
+          "count": 1
+        },
+        {
+          "name": "Bosnian",
+          "url": "https://iptv-org.github.io/iptv/languages/bos.m3u",
+          "count": 14
+        },
+        {
+          "name": "Buamu",
+          "url": "https://iptv-org.github.io/iptv/languages/box.m3u",
+          "count": 1
+        },
+        {
+          "name": "Bulgarian",
+          "url": "https://iptv-org.github.io/iptv/languages/bul.m3u",
+          "count": 24
+        },
+        {
+          "name": "Burmese",
+          "url": "https://iptv-org.github.io/iptv/languages/mya.m3u",
+          "count": 7
+        },
+        {
+          "name": "Catalan",
+          "url": "https://iptv-org.github.io/iptv/languages/cat.m3u",
+          "count": 63
+        },
+        {
+          "name": "Cebuano",
+          "url": "https://iptv-org.github.io/iptv/languages/ceb.m3u",
+          "count": 1
+        },
+        {
+          "name": "Central Atlas Tamazight",
+          "url": "https://iptv-org.github.io/iptv/languages/tzm.m3u",
+          "count": 1
+        },
+        {
+          "name": "Central Kurdish",
+          "url": "https://iptv-org.github.io/iptv/languages/ckb.m3u",
+          "count": 1
+        },
+        {
+          "name": "Chenoua",
+          "url": "https://iptv-org.github.io/iptv/languages/cnu.m3u",
+          "count": 1
+        },
+        {
+          "name": "Chhattisgarhi",
+          "url": "https://iptv-org.github.io/iptv/languages/hne.m3u",
+          "count": 1
+        },
+        {
+          "name": "Chiga",
+          "url": "https://iptv-org.github.io/iptv/languages/cgg.m3u",
+          "count": 1
+        },
+        {
+          "name": "Chinese",
+          "url": "https://iptv-org.github.io/iptv/languages/zho.m3u",
+          "count": 225
+        },
+        {
+          "name": "Croatian",
+          "url": "https://iptv-org.github.io/iptv/languages/hrv.m3u",
+          "count": 24
+        },
+        {
+          "name": "Czech",
+          "url": "https://iptv-org.github.io/iptv/languages/ces.m3u",
+          "count": 37
+        },
+        {
+          "name": "Danish",
+          "url": "https://iptv-org.github.io/iptv/languages/dan.m3u",
+          "count": 12
+        },
+        {
+          "name": "Dari (Parsi)",
+          "url": "https://iptv-org.github.io/iptv/languages/prd.m3u",
+          "count": 15
+        },
+        {
+          "name": "Dari (Persian)",
+          "url": "https://iptv-org.github.io/iptv/languages/prs.m3u",
+          "count": 1
+        },
+        {
+          "name": "Dhanwar (Nepal)",
+          "url": "https://iptv-org.github.io/iptv/languages/dhw.m3u",
+          "count": 1
+        },
+        {
+          "name": "Dhivehi",
+          "url": "https://iptv-org.github.io/iptv/languages/div.m3u",
+          "count": 13
+        },
+        {
+          "name": "Dholuo",
+          "url": "https://iptv-org.github.io/iptv/languages/luo.m3u",
+          "count": 2
+        },
+        {
+          "name": "Dimili",
+          "url": "https://iptv-org.github.io/iptv/languages/zza.m3u",
+          "count": 2
+        },
+        {
+          "name": "Dutch",
+          "url": "https://iptv-org.github.io/iptv/languages/nld.m3u",
+          "count": 180
+        },
+        {
+          "name": "Dyula",
+          "url": "https://iptv-org.github.io/iptv/languages/dyu.m3u",
+          "count": 1
+        },
+        {
+          "name": "Egyptian Arabic",
+          "url": "https://iptv-org.github.io/iptv/languages/arz.m3u",
+          "count": 1
+        },
+        {
+          "name": "English",
+          "url": "https://iptv-org.github.io/iptv/languages/eng.m3u",
+          "count": 2344
+        },
+        {
+          "name": "Estonian",
+          "url": "https://iptv-org.github.io/iptv/languages/est.m3u",
+          "count": 9
+        },
+        {
+          "name": "Ewe",
+          "url": "https://iptv-org.github.io/iptv/languages/ewe.m3u",
+          "count": 1
+        },
+        {
+          "name": "Faroese",
+          "url": "https://iptv-org.github.io/iptv/languages/fao.m3u",
+          "count": 3
+        },
+        {
+          "name": "Fataleka",
+          "url": "https://iptv-org.github.io/iptv/languages/far.m3u",
+          "count": 1
+        },
+        {
+          "name": "Filipino",
+          "url": "https://iptv-org.github.io/iptv/languages/fil.m3u",
+          "count": 2
+        },
+        {
+          "name": "Finnish",
+          "url": "https://iptv-org.github.io/iptv/languages/fin.m3u",
+          "count": 16
+        },
+        {
+          "name": "Fon",
+          "url": "https://iptv-org.github.io/iptv/languages/fon.m3u",
+          "count": 2
+        },
+        {
+          "name": "French",
+          "url": "https://iptv-org.github.io/iptv/languages/fra.m3u",
+          "count": 499
+        },
+        {
+          "name": "Fulah",
+          "url": "https://iptv-org.github.io/iptv/languages/ful.m3u",
+          "count": 2
+        },
+        {
+          "name": "Gaelic",
+          "url": "https://iptv-org.github.io/iptv/languages/gla.m3u",
+          "count": 2
+        },
+        {
+          "name": "Galician",
+          "url": "https://iptv-org.github.io/iptv/languages/glg.m3u",
+          "count": 2
+        },
+        {
+          "name": "Ganda",
+          "url": "https://iptv-org.github.io/iptv/languages/lug.m3u",
+          "count": 5
+        },
+        {
+          "name": "Gen",
+          "url": "https://iptv-org.github.io/iptv/languages/gej.m3u",
+          "count": 1
+        },
+        {
+          "name": "Georgian",
+          "url": "https://iptv-org.github.io/iptv/languages/kat.m3u",
+          "count": 22
+        },
+        {
+          "name": "German",
+          "url": "https://iptv-org.github.io/iptv/languages/deu.m3u",
+          "count": 321
+        },
+        {
+          "name": "Gikuyu",
+          "url": "https://iptv-org.github.io/iptv/languages/kik.m3u",
+          "count": 3
+        },
+        {
+          "name": "Goan Konkani",
+          "url": "https://iptv-org.github.io/iptv/languages/gom.m3u",
+          "count": 1
+        },
+        {
+          "name": "Gourmanchéma",
+          "url": "https://iptv-org.github.io/iptv/languages/gux.m3u",
+          "count": 1
+        },
+        {
+          "name": "Greek",
+          "url": "https://iptv-org.github.io/iptv/languages/ell.m3u",
+          "count": 107
+        },
+        {
+          "name": "Guadeloupean Creole French",
+          "url": "https://iptv-org.github.io/iptv/languages/gcf.m3u",
+          "count": 1
+        },
+        {
+          "name": "Gujarati",
+          "url": "https://iptv-org.github.io/iptv/languages/guj.m3u",
+          "count": 11
+        },
+        {
+          "name": "Gun",
+          "url": "https://iptv-org.github.io/iptv/languages/guw.m3u",
+          "count": 1
+        },
+        {
+          "name": "Haitian",
+          "url": "https://iptv-org.github.io/iptv/languages/hat.m3u",
+          "count": 22
+        },
+        {
+          "name": "Hausa",
+          "url": "https://iptv-org.github.io/iptv/languages/hau.m3u",
+          "count": 3
+        },
+        {
+          "name": "Hebrew",
+          "url": "https://iptv-org.github.io/iptv/languages/heb.m3u",
+          "count": 16
+        },
+        {
+          "name": "Hindi",
+          "url": "https://iptv-org.github.io/iptv/languages/hin.m3u",
+          "count": 233
+        },
+        {
+          "name": "Hmong",
+          "url": "https://iptv-org.github.io/iptv/languages/hmn.m3u",
+          "count": 1
+        },
+        {
+          "name": "Hungarian",
+          "url": "https://iptv-org.github.io/iptv/languages/hun.m3u",
+          "count": 102
+        },
+        {
+          "name": "Icelandic",
+          "url": "https://iptv-org.github.io/iptv/languages/isl.m3u",
+          "count": 5
+        },
+        {
+          "name": "Indonesian",
+          "url": "https://iptv-org.github.io/iptv/languages/ind.m3u",
+          "count": 169
+        },
+        {
+          "name": "Inuktitut",
+          "url": "https://iptv-org.github.io/iptv/languages/iku.m3u",
+          "count": 1
+        },
+        {
+          "name": "Irish",
+          "url": "https://iptv-org.github.io/iptv/languages/gle.m3u",
+          "count": 3
+        },
+        {
+          "name": "Isekiri",
+          "url": "https://iptv-org.github.io/iptv/languages/its.m3u",
+          "count": 1
+        },
+        {
+          "name": "Italian",
+          "url": "https://iptv-org.github.io/iptv/languages/ita.m3u",
+          "count": 341
+        },
+        {
+          "name": "Japanese",
+          "url": "https://iptv-org.github.io/iptv/languages/jpn.m3u",
+          "count": 24
+        },
+        {
+          "name": "Javanese",
+          "url": "https://iptv-org.github.io/iptv/languages/jav.m3u",
+          "count": 4
+        },
+        {
+          "name": "Kabiyè",
+          "url": "https://iptv-org.github.io/iptv/languages/kbp.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kabyle",
+          "url": "https://iptv-org.github.io/iptv/languages/kab.m3u",
+          "count": 2
+        },
+        {
+          "name": "Kannada",
+          "url": "https://iptv-org.github.io/iptv/languages/kan.m3u",
+          "count": 32
+        },
+        {
+          "name": "Kapampangan",
+          "url": "https://iptv-org.github.io/iptv/languages/pam.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kazakh",
+          "url": "https://iptv-org.github.io/iptv/languages/kaz.m3u",
+          "count": 28
+        },
+        {
+          "name": "Khmer",
+          "url": "https://iptv-org.github.io/iptv/languages/khm.m3u",
+          "count": 25
+        },
+        {
+          "name": "Khorasani Turkish",
+          "url": "https://iptv-org.github.io/iptv/languages/kmz.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kinyarwanda",
+          "url": "https://iptv-org.github.io/iptv/languages/kin.m3u",
+          "count": 9
+        },
+        {
+          "name": "Kirghiz",
+          "url": "https://iptv-org.github.io/iptv/languages/kir.m3u",
+          "count": 13
+        },
+        {
+          "name": "Kituba (Congo)",
+          "url": "https://iptv-org.github.io/iptv/languages/mkw.m3u",
+          "count": 1
+        },
+        {
+          "name": "Konabéré",
+          "url": "https://iptv-org.github.io/iptv/languages/bbo.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kongo",
+          "url": "https://iptv-org.github.io/iptv/languages/kon.m3u",
+          "count": 2
+        },
+        {
+          "name": "Konkani (macrolanguage)",
+          "url": "https://iptv-org.github.io/iptv/languages/kok.m3u",
+          "count": 3
+        },
+        {
+          "name": "Korean",
+          "url": "https://iptv-org.github.io/iptv/languages/kor.m3u",
+          "count": 89
+        },
+        {
+          "name": "Kumam",
+          "url": "https://iptv-org.github.io/iptv/languages/kdi.m3u",
+          "count": 1
+        },
+        {
+          "name": "Kurdish",
+          "url": "https://iptv-org.github.io/iptv/languages/kur.m3u",
+          "count": 32
+        },
+        {
+          "name": "Lango (Uganda)",
+          "url": "https://iptv-org.github.io/iptv/languages/laj.m3u",
+          "count": 1
+        },
+        {
+          "name": "Lao",
+          "url": "https://iptv-org.github.io/iptv/languages/lao.m3u",
+          "count": 6
+        },
+        {
+          "name": "Latin",
+          "url": "https://iptv-org.github.io/iptv/languages/lat.m3u",
+          "count": 4
+        },
+        {
+          "name": "Latvian",
+          "url": "https://iptv-org.github.io/iptv/languages/lav.m3u",
+          "count": 7
+        },
+        {
+          "name": "Letzeburgesch",
+          "url": "https://iptv-org.github.io/iptv/languages/ltz.m3u",
+          "count": 12
+        },
+        {
+          "name": "Lingala",
+          "url": "https://iptv-org.github.io/iptv/languages/lin.m3u",
+          "count": 5
+        },
+        {
+          "name": "Lithuanian",
+          "url": "https://iptv-org.github.io/iptv/languages/lit.m3u",
+          "count": 5
+        },
+        {
+          "name": "Lobi",
+          "url": "https://iptv-org.github.io/iptv/languages/lob.m3u",
+          "count": 1
+        },
+        {
+          "name": "Luba-Lulua",
+          "url": "https://iptv-org.github.io/iptv/languages/lua.m3u",
+          "count": 1
+        },
+        {
+          "name": "Lushai",
+          "url": "https://iptv-org.github.io/iptv/languages/lus.m3u",
+          "count": 1
+        },
+        {
+          "name": "Lyélé",
+          "url": "https://iptv-org.github.io/iptv/languages/lee.m3u",
+          "count": 1
+        },
+        {
+          "name": "Macedonian",
+          "url": "https://iptv-org.github.io/iptv/languages/mkd.m3u",
+          "count": 33
+        },
+        {
+          "name": "Maithili",
+          "url": "https://iptv-org.github.io/iptv/languages/mai.m3u",
+          "count": 1
+        },
+        {
+          "name": "Malay",
+          "url": "https://iptv-org.github.io/iptv/languages/msa.m3u",
+          "count": 17
+        },
+        {
+          "name": "Malayalam",
+          "url": "https://iptv-org.github.io/iptv/languages/mal.m3u",
+          "count": 87
+        },
+        {
+          "name": "Maltese",
+          "url": "https://iptv-org.github.io/iptv/languages/mlt.m3u",
+          "count": 5
+        },
+        {
+          "name": "Mandarin Chinese",
+          "url": "https://iptv-org.github.io/iptv/languages/cmn.m3u",
+          "count": 5
+        },
+        {
+          "name": "Mandinka",
+          "url": "https://iptv-org.github.io/iptv/languages/mnk.m3u",
+          "count": 3
+        },
+        {
+          "name": "Maori",
+          "url": "https://iptv-org.github.io/iptv/languages/mri.m3u",
+          "count": 2
+        },
+        {
+          "name": "Marathi",
+          "url": "https://iptv-org.github.io/iptv/languages/mar.m3u",
+          "count": 21
+        },
+        {
+          "name": "Marka",
+          "url": "https://iptv-org.github.io/iptv/languages/rkm.m3u",
+          "count": 1
+        },
+        {
+          "name": "Matya Samo",
+          "url": "https://iptv-org.github.io/iptv/languages/stj.m3u",
+          "count": 1
+        },
+        {
+          "name": "Maya Samo",
+          "url": "https://iptv-org.github.io/iptv/languages/sym.m3u",
+          "count": 1
+        },
+        {
+          "name": "Min Nan Chinese",
+          "url": "https://iptv-org.github.io/iptv/languages/nan.m3u",
+          "count": 1
+        },
+        {
+          "name": "Mongolian",
+          "url": "https://iptv-org.github.io/iptv/languages/mon.m3u",
+          "count": 47
+        },
+        {
+          "name": "Montenegrin",
+          "url": "https://iptv-org.github.io/iptv/languages/cnr.m3u",
+          "count": 1
+        },
+        {
+          "name": "Morisyen",
+          "url": "https://iptv-org.github.io/iptv/languages/mfe.m3u",
+          "count": 2
+        },
+        {
+          "name": "Moroccan Sign Language",
+          "url": "https://iptv-org.github.io/iptv/languages/xms.m3u",
+          "count": 1
+        },
+        {
+          "name": "Mossi",
+          "url": "https://iptv-org.github.io/iptv/languages/mos.m3u",
+          "count": 2
+        },
+        {
+          "name": "Mycenaean Greek",
+          "url": "https://iptv-org.github.io/iptv/languages/gmy.m3u",
+          "count": 1
+        },
+        {
+          "name": "Nepali",
+          "url": "https://iptv-org.github.io/iptv/languages/nep.m3u",
+          "count": 7
+        },
+        {
+          "name": "Northern Dagara",
+          "url": "https://iptv-org.github.io/iptv/languages/dgi.m3u",
+          "count": 1
+        },
+        {
+          "name": "Norwegian",
+          "url": "https://iptv-org.github.io/iptv/languages/nor.m3u",
+          "count": 9
+        },
+        {
+          "name": "Nyankole",
+          "url": "https://iptv-org.github.io/iptv/languages/nyn.m3u",
+          "count": 1
+        },
+        {
+          "name": "Nyoro",
+          "url": "https://iptv-org.github.io/iptv/languages/nyo.m3u",
+          "count": 1
+        },
+        {
+          "name": "Oriya (macrolanguage)",
+          "url": "https://iptv-org.github.io/iptv/languages/ori.m3u",
+          "count": 14
+        },
+        {
+          "name": "Panjabi",
+          "url": "https://iptv-org.github.io/iptv/languages/pan.m3u",
+          "count": 35
+        },
+        {
+          "name": "Papiamento",
+          "url": "https://iptv-org.github.io/iptv/languages/pap.m3u",
+          "count": 17
+        },
+        {
+          "name": "Pashto",
+          "url": "https://iptv-org.github.io/iptv/languages/pus.m3u",
+          "count": 26
+        },
+        {
+          "name": "Persian",
+          "url": "https://iptv-org.github.io/iptv/languages/fas.m3u",
+          "count": 223
+        },
+        {
+          "name": "Polish",
+          "url": "https://iptv-org.github.io/iptv/languages/pol.m3u",
+          "count": 83
+        },
+        {
+          "name": "Portuguese",
+          "url": "https://iptv-org.github.io/iptv/languages/por.m3u",
+          "count": 253
+        },
+        {
+          "name": "Pulaar",
+          "url": "https://iptv-org.github.io/iptv/languages/fuc.m3u",
+          "count": 4
+        },
+        {
+          "name": "Quechua",
+          "url": "https://iptv-org.github.io/iptv/languages/que.m3u",
+          "count": 1
+        },
+        {
+          "name": "Romanian",
+          "url": "https://iptv-org.github.io/iptv/languages/ron.m3u",
+          "count": 107
+        },
+        {
+          "name": "Romany",
+          "url": "https://iptv-org.github.io/iptv/languages/rom.m3u",
+          "count": 1
+        },
+        {
+          "name": "Russian",
+          "url": "https://iptv-org.github.io/iptv/languages/rus.m3u",
+          "count": 359
+        },
+        {
+          "name": "Saint Lucian Creole French",
+          "url": "https://iptv-org.github.io/iptv/languages/acf.m3u",
+          "count": 1
+        },
+        {
+          "name": "Samoan",
+          "url": "https://iptv-org.github.io/iptv/languages/smo.m3u",
+          "count": 2
+        },
+        {
+          "name": "Santali",
+          "url": "https://iptv-org.github.io/iptv/languages/sat.m3u",
+          "count": 1
+        },
+        {
+          "name": "Serbian",
+          "url": "https://iptv-org.github.io/iptv/languages/srp.m3u",
+          "count": 45
+        },
+        {
+          "name": "Sinhala",
+          "url": "https://iptv-org.github.io/iptv/languages/sin.m3u",
+          "count": 15
+        },
+        {
+          "name": "Slovak",
+          "url": "https://iptv-org.github.io/iptv/languages/slk.m3u",
+          "count": 40
+        },
+        {
+          "name": "Slovenian",
+          "url": "https://iptv-org.github.io/iptv/languages/slv.m3u",
+          "count": 15
+        },
+        {
+          "name": "Somali",
+          "url": "https://iptv-org.github.io/iptv/languages/som.m3u",
+          "count": 15
+        },
+        {
+          "name": "South African Sign Language",
+          "url": "https://iptv-org.github.io/iptv/languages/sfs.m3u",
+          "count": 1
+        },
+        {
+          "name": "South Ndebele",
+          "url": "https://iptv-org.github.io/iptv/languages/nbl.m3u",
+          "count": 1
+        },
+        {
+          "name": "Southern Samo",
+          "url": "https://iptv-org.github.io/iptv/languages/sbd.m3u",
+          "count": 1
+        },
+        {
+          "name": "Spanish",
+          "url": "https://iptv-org.github.io/iptv/languages/spa.m3u",
+          "count": 1699
+        },
+        {
+          "name": "Standard Arabic",
+          "url": "https://iptv-org.github.io/iptv/languages/arb.m3u",
+          "count": 1
+        },
+        {
+          "name": "Sundanese",
+          "url": "https://iptv-org.github.io/iptv/languages/sun.m3u",
+          "count": 3
+        },
+        {
+          "name": "Swahili",
+          "url": "https://iptv-org.github.io/iptv/languages/swa.m3u",
+          "count": 20
+        },
+        {
+          "name": "Swati",
+          "url": "https://iptv-org.github.io/iptv/languages/ssw.m3u",
+          "count": 1
+        },
+        {
+          "name": "Swedish",
+          "url": "https://iptv-org.github.io/iptv/languages/swe.m3u",
+          "count": 12
+        },
+        {
+          "name": "Tachawit",
+          "url": "https://iptv-org.github.io/iptv/languages/shy.m3u",
+          "count": 2
+        },
+        {
+          "name": "Tachelhit",
+          "url": "https://iptv-org.github.io/iptv/languages/shi.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tagalog",
+          "url": "https://iptv-org.github.io/iptv/languages/tgl.m3u",
+          "count": 4
+        },
+        {
+          "name": "Tahitian",
+          "url": "https://iptv-org.github.io/iptv/languages/tah.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tajik",
+          "url": "https://iptv-org.github.io/iptv/languages/tgk.m3u",
+          "count": 15
+        },
+        {
+          "name": "Tamashek",
+          "url": "https://iptv-org.github.io/iptv/languages/tmh.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tamasheq",
+          "url": "https://iptv-org.github.io/iptv/languages/taq.m3u",
+          "count": 2
+        },
+        {
+          "name": "Tamil",
+          "url": "https://iptv-org.github.io/iptv/languages/tam.m3u",
+          "count": 118
+        },
+        {
+          "name": "Tarifit",
+          "url": "https://iptv-org.github.io/iptv/languages/rif.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tatar",
+          "url": "https://iptv-org.github.io/iptv/languages/tat.m3u",
+          "count": 1
+        },
+        {
+          "name": "Telugu",
+          "url": "https://iptv-org.github.io/iptv/languages/tel.m3u",
+          "count": 65
+        },
+        {
+          "name": "Thai",
+          "url": "https://iptv-org.github.io/iptv/languages/tha.m3u",
+          "count": 70
+        },
+        {
+          "name": "Tibetan",
+          "url": "https://iptv-org.github.io/iptv/languages/bod.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tigre",
+          "url": "https://iptv-org.github.io/iptv/languages/tig.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tigrinya",
+          "url": "https://iptv-org.github.io/iptv/languages/tir.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tooro",
+          "url": "https://iptv-org.github.io/iptv/languages/ttj.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tsonga",
+          "url": "https://iptv-org.github.io/iptv/languages/tso.m3u",
+          "count": 1
+        },
+        {
+          "name": "Tumzabt",
+          "url": "https://iptv-org.github.io/iptv/languages/mzb.m3u",
+          "count": 1
+        },
+        {
+          "name": "Turkish",
+          "url": "https://iptv-org.github.io/iptv/languages/tur.m3u",
+          "count": 235
+        },
+        {
+          "name": "Turkmen",
+          "url": "https://iptv-org.github.io/iptv/languages/tuk.m3u",
+          "count": 8
+        },
+        {
+          "name": "Uighur",
+          "url": "https://iptv-org.github.io/iptv/languages/uig.m3u",
+          "count": 3
+        },
+        {
+          "name": "Ukrainian",
+          "url": "https://iptv-org.github.io/iptv/languages/ukr.m3u",
+          "count": 59
+        },
+        {
+          "name": "Urdu",
+          "url": "https://iptv-org.github.io/iptv/languages/urd.m3u",
+          "count": 56
+        },
+        {
+          "name": "Uzbek",
+          "url": "https://iptv-org.github.io/iptv/languages/uzb.m3u",
+          "count": 24
+        },
+        {
+          "name": "Venda",
+          "url": "https://iptv-org.github.io/iptv/languages/ven.m3u",
+          "count": 1
+        },
+        {
+          "name": "Vietnamese",
+          "url": "https://iptv-org.github.io/iptv/languages/vie.m3u",
+          "count": 82
+        },
+        {
+          "name": "Welsh",
+          "url": "https://iptv-org.github.io/iptv/languages/cym.m3u",
+          "count": 1
+        },
+        {
+          "name": "Western Frisian",
+          "url": "https://iptv-org.github.io/iptv/languages/fry.m3u",
+          "count": 1
+        },
+        {
+          "name": "Wolof",
+          "url": "https://iptv-org.github.io/iptv/languages/wol.m3u",
+          "count": 11
+        },
+        {
+          "name": "Xhosa",
+          "url": "https://iptv-org.github.io/iptv/languages/xho.m3u",
+          "count": 1
+        },
+        {
+          "name": "Yakut",
+          "url": "https://iptv-org.github.io/iptv/languages/sah.m3u",
+          "count": 1
+        },
+        {
+          "name": "Yoruba",
+          "url": "https://iptv-org.github.io/iptv/languages/yor.m3u",
+          "count": 1
+        },
+        {
+          "name": "Yucatec Maya",
+          "url": "https://iptv-org.github.io/iptv/languages/yua.m3u",
+          "count": 1
+        },
+        {
+          "name": "Yue Chinese",
+          "url": "https://iptv-org.github.io/iptv/languages/yue.m3u",
+          "count": 6
+        },
+        {
+          "name": "Zarma",
+          "url": "https://iptv-org.github.io/iptv/languages/dje.m3u",
+          "count": 1
+        },
+        {
+          "name": "Zulu",
+          "url": "https://iptv-org.github.io/iptv/languages/zul.m3u",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "country",
+      "label": "Country",
+      "items": [
+        {
+          "name": "🇦🇫 Afghanistan",
+          "url": "https://iptv-org.github.io/iptv/countries/af.m3u"
+        },
+        {
+          "name": "🇦🇱 Albania",
+          "url": "https://iptv-org.github.io/iptv/countries/al.m3u"
+        },
+        {
+          "name": "🇩🇿 Algeria",
+          "url": "https://iptv-org.github.io/iptv/countries/dz.m3u"
+        },
+        {
+          "name": "🇦🇩 Andorra",
+          "url": "https://iptv-org.github.io/iptv/countries/ad.m3u"
+        },
+        {
+          "name": "🇦🇴 Angola",
+          "url": "https://iptv-org.github.io/iptv/countries/ao.m3u"
+        },
+        {
+          "name": "🇦🇷 Argentina",
+          "url": "https://iptv-org.github.io/iptv/countries/ar.m3u"
+        },
+        {
+          "name": "🇦🇲 Armenia",
+          "url": "https://iptv-org.github.io/iptv/countries/am.m3u"
+        },
+        {
+          "name": "🇦🇼 Aruba",
+          "url": "https://iptv-org.github.io/iptv/countries/aw.m3u"
+        },
+        {
+          "name": "🇦🇺 Australia",
+          "url": "https://iptv-org.github.io/iptv/countries/au.m3u"
+        },
+        {
+          "name": "🇦🇹 Austria",
+          "url": "https://iptv-org.github.io/iptv/countries/at.m3u"
+        },
+        {
+          "name": "🇦🇿 Azerbaijan",
+          "url": "https://iptv-org.github.io/iptv/countries/az.m3u"
+        },
+        {
+          "name": "🇧🇸 Bahamas",
+          "url": "https://iptv-org.github.io/iptv/countries/bs.m3u"
+        },
+        {
+          "name": "🇧🇭 Bahrain",
+          "url": "https://iptv-org.github.io/iptv/countries/bh.m3u"
+        },
+        {
+          "name": "🇧🇩 Bangladesh",
+          "url": "https://iptv-org.github.io/iptv/countries/bd.m3u"
+        },
+        {
+          "name": "🇧🇧 Barbados",
+          "url": "https://iptv-org.github.io/iptv/countries/bb.m3u"
+        },
+        {
+          "name": "🇧🇾 Belarus",
+          "url": "https://iptv-org.github.io/iptv/countries/by.m3u"
+        },
+        {
+          "name": "🇧🇪 Belgium",
+          "url": "https://iptv-org.github.io/iptv/countries/be.m3u"
+        },
+        {
+          "name": "🇧🇯 Benin",
+          "url": "https://iptv-org.github.io/iptv/countries/bj.m3u"
+        },
+        {
+          "name": "🇧🇲 Bermuda",
+          "url": "https://iptv-org.github.io/iptv/countries/bm.m3u"
+        },
+        {
+          "name": "🇧🇴 Bolivia",
+          "url": "https://iptv-org.github.io/iptv/countries/bo.m3u"
+        },
+        {
+          "name": "🇧🇶 Bonaire",
+          "url": "https://iptv-org.github.io/iptv/countries/bq.m3u"
+        },
+        {
+          "name": "🇧🇦 Bosnia and Herzegovina",
+          "url": "https://iptv-org.github.io/iptv/countries/ba.m3u"
+        },
+        {
+          "name": "🇧🇷 Brazil",
+          "url": "https://iptv-org.github.io/iptv/countries/br.m3u"
+        },
+        {
+          "name": "🇻🇬 British Virgin Islands",
+          "url": "https://iptv-org.github.io/iptv/countries/vg.m3u"
+        },
+        {
+          "name": "🇧🇳 Brunei",
+          "url": "https://iptv-org.github.io/iptv/countries/bn.m3u"
+        },
+        {
+          "name": "🇧🇬 Bulgaria",
+          "url": "https://iptv-org.github.io/iptv/countries/bg.m3u"
+        },
+        {
+          "name": "🇧🇫 Burkina Faso",
+          "url": "https://iptv-org.github.io/iptv/countries/bf.m3u"
+        },
+        {
+          "name": "🇰🇭 Cambodia",
+          "url": "https://iptv-org.github.io/iptv/countries/kh.m3u"
+        },
+        {
+          "name": "🇨🇲 Cameroon",
+          "url": "https://iptv-org.github.io/iptv/countries/cm.m3u"
+        },
+        {
+          "name": "🇨🇦 Canada",
+          "url": "https://iptv-org.github.io/iptv/countries/ca.m3u"
+        },
+        {
+          "name": "🇨🇻 Cape Verde",
+          "url": "https://iptv-org.github.io/iptv/countries/cv.m3u"
+        },
+        {
+          "name": "🇹🇩 Chad",
+          "url": "https://iptv-org.github.io/iptv/countries/td.m3u"
+        },
+        {
+          "name": "🇨🇱 Chile",
+          "url": "https://iptv-org.github.io/iptv/countries/cl.m3u"
+        },
+        {
+          "name": "🇨🇳 China",
+          "url": "https://iptv-org.github.io/iptv/countries/cn.m3u"
+        },
+        {
+          "name": "🇨🇴 Colombia",
+          "url": "https://iptv-org.github.io/iptv/countries/co.m3u"
+        },
+        {
+          "name": "🇨🇷 Costa Rica",
+          "url": "https://iptv-org.github.io/iptv/countries/cr.m3u"
+        },
+        {
+          "name": "🇭🇷 Croatia",
+          "url": "https://iptv-org.github.io/iptv/countries/hr.m3u"
+        },
+        {
+          "name": "🇨🇺 Cuba",
+          "url": "https://iptv-org.github.io/iptv/countries/cu.m3u"
+        },
+        {
+          "name": "🇨🇼 Curacao",
+          "url": "https://iptv-org.github.io/iptv/countries/cw.m3u"
+        },
+        {
+          "name": "🇨🇾 Cyprus",
+          "url": "https://iptv-org.github.io/iptv/countries/cy.m3u"
+        },
+        {
+          "name": "🇨🇿 Czech Republic",
+          "url": "https://iptv-org.github.io/iptv/countries/cz.m3u"
+        },
+        {
+          "name": "🇨🇩 Democratic Republic of the Congo",
+          "url": "https://iptv-org.github.io/iptv/countries/cd.m3u"
+        },
+        {
+          "name": "🇩🇰 Denmark",
+          "url": "https://iptv-org.github.io/iptv/countries/dk.m3u"
+        },
+        {
+          "name": "🇩🇯 Djibouti",
+          "url": "https://iptv-org.github.io/iptv/countries/dj.m3u"
+        },
+        {
+          "name": "🇩🇴 Dominican Republic",
+          "url": "https://iptv-org.github.io/iptv/countries/do.m3u"
+        },
+        {
+          "name": "🇪🇨 Ecuador",
+          "url": "https://iptv-org.github.io/iptv/countries/ec.m3u"
+        },
+        {
+          "name": "🇪🇬 Egypt",
+          "url": "https://iptv-org.github.io/iptv/countries/eg.m3u"
+        },
+        {
+          "name": "🇸🇻 El Salvador",
+          "url": "https://iptv-org.github.io/iptv/countries/sv.m3u"
+        },
+        {
+          "name": "🇬🇶 Equatorial Guinea",
+          "url": "https://iptv-org.github.io/iptv/countries/gq.m3u"
+        },
+        {
+          "name": "🇪🇷 Eritrea",
+          "url": "https://iptv-org.github.io/iptv/countries/er.m3u"
+        },
+        {
+          "name": "🇪🇪 Estonia",
+          "url": "https://iptv-org.github.io/iptv/countries/ee.m3u"
+        },
+        {
+          "name": "🇪🇹 Ethiopia",
+          "url": "https://iptv-org.github.io/iptv/countries/et.m3u"
+        },
+        {
+          "name": "🇫🇴 Faroe Islands",
+          "url": "https://iptv-org.github.io/iptv/countries/fo.m3u"
+        },
+        {
+          "name": "🇫🇮 Finland",
+          "url": "https://iptv-org.github.io/iptv/countries/fi.m3u"
+        },
+        {
+          "name": "🇫🇷 France",
+          "url": "https://iptv-org.github.io/iptv/countries/fr.m3u"
+        },
+        {
+          "name": "🇬🇫 French Guiana",
+          "url": "https://iptv-org.github.io/iptv/countries/gf.m3u"
+        },
+        {
+          "name": "🇵🇫 French Polynesia",
+          "url": "https://iptv-org.github.io/iptv/countries/pf.m3u"
+        },
+        {
+          "name": "🇬🇲 Gambia",
+          "url": "https://iptv-org.github.io/iptv/countries/gm.m3u"
+        },
+        {
+          "name": "🇬🇪 Georgia",
+          "url": "https://iptv-org.github.io/iptv/countries/ge.m3u"
+        },
+        {
+          "name": "🇩🇪 Germany",
+          "url": "https://iptv-org.github.io/iptv/countries/de.m3u"
+        },
+        {
+          "name": "🇬🇭 Ghana",
+          "url": "https://iptv-org.github.io/iptv/countries/gh.m3u"
+        },
+        {
+          "name": "🇬🇷 Greece",
+          "url": "https://iptv-org.github.io/iptv/countries/gr.m3u"
+        },
+        {
+          "name": "🇬🇵 Guadeloupe",
+          "url": "https://iptv-org.github.io/iptv/countries/gp.m3u"
+        },
+        {
+          "name": "🇬🇺 Guam",
+          "url": "https://iptv-org.github.io/iptv/countries/gu.m3u"
+        },
+        {
+          "name": "🇬🇹 Guatemala",
+          "url": "https://iptv-org.github.io/iptv/countries/gt.m3u"
+        },
+        {
+          "name": "🇬🇬 Guernsey",
+          "url": "https://iptv-org.github.io/iptv/countries/gg.m3u"
+        },
+        {
+          "name": "🇬🇳 Guinea",
+          "url": "https://iptv-org.github.io/iptv/countries/gn.m3u"
+        },
+        {
+          "name": "🇬🇾 Guyana",
+          "url": "https://iptv-org.github.io/iptv/countries/gy.m3u"
+        },
+        {
+          "name": "🇭🇹 Haiti",
+          "url": "https://iptv-org.github.io/iptv/countries/ht.m3u"
+        },
+        {
+          "name": "🇭🇳 Honduras",
+          "url": "https://iptv-org.github.io/iptv/countries/hn.m3u"
+        },
+        {
+          "name": "🇭🇰 Hong Kong",
+          "url": "https://iptv-org.github.io/iptv/countries/hk.m3u"
+        },
+        {
+          "name": "🇭🇺 Hungary",
+          "url": "https://iptv-org.github.io/iptv/countries/hu.m3u"
+        },
+        {
+          "name": "🇮🇸 Iceland",
+          "url": "https://iptv-org.github.io/iptv/countries/is.m3u"
+        },
+        {
+          "name": "🇮🇳 India",
+          "url": "https://iptv-org.github.io/iptv/countries/in.m3u"
+        },
+        {
+          "name": "🇮🇩 Indonesia",
+          "url": "https://iptv-org.github.io/iptv/countries/id.m3u"
+        },
+        {
+          "name": "🇮🇷 Iran",
+          "url": "https://iptv-org.github.io/iptv/countries/ir.m3u"
+        },
+        {
+          "name": "🇮🇶 Iraq",
+          "url": "https://iptv-org.github.io/iptv/countries/iq.m3u"
+        },
+        {
+          "name": "🇮🇪 Ireland",
+          "url": "https://iptv-org.github.io/iptv/countries/ie.m3u"
+        },
+        {
+          "name": "🇮🇱 Israel",
+          "url": "https://iptv-org.github.io/iptv/countries/il.m3u"
+        },
+        {
+          "name": "🇮🇹 Italy",
+          "url": "https://iptv-org.github.io/iptv/countries/it.m3u"
+        },
+        {
+          "name": "🇨🇮 Ivory Coast",
+          "url": "https://iptv-org.github.io/iptv/countries/ci.m3u"
+        },
+        {
+          "name": "🇯🇲 Jamaica",
+          "url": "https://iptv-org.github.io/iptv/countries/jm.m3u"
+        },
+        {
+          "name": "🇯🇵 Japan",
+          "url": "https://iptv-org.github.io/iptv/countries/jp.m3u"
+        },
+        {
+          "name": "🇯🇴 Jordan",
+          "url": "https://iptv-org.github.io/iptv/countries/jo.m3u"
+        },
+        {
+          "name": "🇰🇿 Kazakhstan",
+          "url": "https://iptv-org.github.io/iptv/countries/kz.m3u"
+        },
+        {
+          "name": "🇰🇪 Kenya",
+          "url": "https://iptv-org.github.io/iptv/countries/ke.m3u"
+        },
+        {
+          "name": "🇽🇰 Kosovo",
+          "url": "https://iptv-org.github.io/iptv/countries/xk.m3u"
+        },
+        {
+          "name": "🇰🇼 Kuwait",
+          "url": "https://iptv-org.github.io/iptv/countries/kw.m3u"
+        },
+        {
+          "name": "🇰🇬 Kyrgyzstan",
+          "url": "https://iptv-org.github.io/iptv/countries/kg.m3u"
+        },
+        {
+          "name": "🇱🇦 Laos",
+          "url": "https://iptv-org.github.io/iptv/countries/la.m3u"
+        },
+        {
+          "name": "🇱🇻 Latvia",
+          "url": "https://iptv-org.github.io/iptv/countries/lv.m3u"
+        },
+        {
+          "name": "🇱🇧 Lebanon",
+          "url": "https://iptv-org.github.io/iptv/countries/lb.m3u"
+        },
+        {
+          "name": "🇱🇷 Liberia",
+          "url": "https://iptv-org.github.io/iptv/countries/lr.m3u"
+        },
+        {
+          "name": "🇱🇾 Libya",
+          "url": "https://iptv-org.github.io/iptv/countries/ly.m3u"
+        },
+        {
+          "name": "🇱🇮 Liechtenstein",
+          "url": "https://iptv-org.github.io/iptv/countries/li.m3u"
+        },
+        {
+          "name": "🇱🇹 Lithuania",
+          "url": "https://iptv-org.github.io/iptv/countries/lt.m3u"
+        },
+        {
+          "name": "🇱🇺 Luxembourg",
+          "url": "https://iptv-org.github.io/iptv/countries/lu.m3u"
+        },
+        {
+          "name": "🇲🇴 Macao",
+          "url": "https://iptv-org.github.io/iptv/countries/mo.m3u"
+        },
+        {
+          "name": "🇲🇾 Malaysia",
+          "url": "https://iptv-org.github.io/iptv/countries/my.m3u"
+        },
+        {
+          "name": "🇲🇻 Maldives",
+          "url": "https://iptv-org.github.io/iptv/countries/mv.m3u"
+        },
+        {
+          "name": "🇲🇱 Mali",
+          "url": "https://iptv-org.github.io/iptv/countries/ml.m3u"
+        },
+        {
+          "name": "🇲🇹 Malta",
+          "url": "https://iptv-org.github.io/iptv/countries/mt.m3u"
+        },
+        {
+          "name": "🇲🇶 Martinique",
+          "url": "https://iptv-org.github.io/iptv/countries/mq.m3u"
+        },
+        {
+          "name": "🇲🇷 Mauritania",
+          "url": "https://iptv-org.github.io/iptv/countries/mr.m3u"
+        },
+        {
+          "name": "🇲🇺 Mauritius",
+          "url": "https://iptv-org.github.io/iptv/countries/mu.m3u"
+        },
+        {
+          "name": "🇲🇽 Mexico",
+          "url": "https://iptv-org.github.io/iptv/countries/mx.m3u"
+        },
+        {
+          "name": "🇲🇩 Moldova",
+          "url": "https://iptv-org.github.io/iptv/countries/md.m3u"
+        },
+        {
+          "name": "🇲🇨 Monaco",
+          "url": "https://iptv-org.github.io/iptv/countries/mc.m3u"
+        },
+        {
+          "name": "🇲🇳 Mongolia",
+          "url": "https://iptv-org.github.io/iptv/countries/mn.m3u"
+        },
+        {
+          "name": "🇲🇪 Montenegro",
+          "url": "https://iptv-org.github.io/iptv/countries/me.m3u"
+        },
+        {
+          "name": "🇲🇦 Morocco",
+          "url": "https://iptv-org.github.io/iptv/countries/ma.m3u"
+        },
+        {
+          "name": "🇲🇿 Mozambique",
+          "url": "https://iptv-org.github.io/iptv/countries/mz.m3u"
+        },
+        {
+          "name": "🇲🇲 Myanmar",
+          "url": "https://iptv-org.github.io/iptv/countries/mm.m3u"
+        },
+        {
+          "name": "🇳🇦 Namibia",
+          "url": "https://iptv-org.github.io/iptv/countries/na.m3u"
+        },
+        {
+          "name": "🇳🇵 Nepal",
+          "url": "https://iptv-org.github.io/iptv/countries/np.m3u"
+        },
+        {
+          "name": "🇳🇱 Netherlands",
+          "url": "https://iptv-org.github.io/iptv/countries/nl.m3u"
+        },
+        {
+          "name": "🇳🇿 New Zealand",
+          "url": "https://iptv-org.github.io/iptv/countries/nz.m3u"
+        },
+        {
+          "name": "🇳🇮 Nicaragua",
+          "url": "https://iptv-org.github.io/iptv/countries/ni.m3u"
+        },
+        {
+          "name": "🇳🇪 Niger",
+          "url": "https://iptv-org.github.io/iptv/countries/ne.m3u"
+        },
+        {
+          "name": "🇳🇬 Nigeria",
+          "url": "https://iptv-org.github.io/iptv/countries/ng.m3u"
+        },
+        {
+          "name": "🇰🇵 North Korea",
+          "url": "https://iptv-org.github.io/iptv/countries/kp.m3u"
+        },
+        {
+          "name": "🇲🇰 North Macedonia",
+          "url": "https://iptv-org.github.io/iptv/countries/mk.m3u"
+        },
+        {
+          "name": "🇳🇴 Norway",
+          "url": "https://iptv-org.github.io/iptv/countries/no.m3u"
+        },
+        {
+          "name": "🇴🇲 Oman",
+          "url": "https://iptv-org.github.io/iptv/countries/om.m3u"
+        },
+        {
+          "name": "🇵🇰 Pakistan",
+          "url": "https://iptv-org.github.io/iptv/countries/pk.m3u"
+        },
+        {
+          "name": "🇵🇸 Palestine",
+          "url": "https://iptv-org.github.io/iptv/countries/ps.m3u"
+        },
+        {
+          "name": "🇵🇦 Panama",
+          "url": "https://iptv-org.github.io/iptv/countries/pa.m3u"
+        },
+        {
+          "name": "🇵🇬 Papua New Guinea",
+          "url": "https://iptv-org.github.io/iptv/countries/pg.m3u"
+        },
+        {
+          "name": "🇵🇾 Paraguay",
+          "url": "https://iptv-org.github.io/iptv/countries/py.m3u"
+        },
+        {
+          "name": "🇵🇪 Peru",
+          "url": "https://iptv-org.github.io/iptv/countries/pe.m3u"
+        },
+        {
+          "name": "🇵🇭 Philippines",
+          "url": "https://iptv-org.github.io/iptv/countries/ph.m3u"
+        },
+        {
+          "name": "🇵🇱 Poland",
+          "url": "https://iptv-org.github.io/iptv/countries/pl.m3u"
+        },
+        {
+          "name": "🇵🇹 Portugal",
+          "url": "https://iptv-org.github.io/iptv/countries/pt.m3u"
+        },
+        {
+          "name": "🇵🇷 Puerto Rico",
+          "url": "https://iptv-org.github.io/iptv/countries/pr.m3u"
+        },
+        {
+          "name": "🇶🇦 Qatar",
+          "url": "https://iptv-org.github.io/iptv/countries/qa.m3u"
+        },
+        {
+          "name": "🇨🇬 Republic of the Congo",
+          "url": "https://iptv-org.github.io/iptv/countries/cg.m3u"
+        },
+        {
+          "name": "🇷🇪 Reunion",
+          "url": "https://iptv-org.github.io/iptv/countries/re.m3u"
+        },
+        {
+          "name": "🇷🇴 Romania",
+          "url": "https://iptv-org.github.io/iptv/countries/ro.m3u"
+        },
+        {
+          "name": "🇷🇺 Russia",
+          "url": "https://iptv-org.github.io/iptv/countries/ru.m3u"
+        },
+        {
+          "name": "🇷🇼 Rwanda",
+          "url": "https://iptv-org.github.io/iptv/countries/rw.m3u"
+        },
+        {
+          "name": "🇰🇳 Saint Kitts and Nevis",
+          "url": "https://iptv-org.github.io/iptv/countries/kn.m3u"
+        },
+        {
+          "name": "🇱🇨 Saint Lucia",
+          "url": "https://iptv-org.github.io/iptv/countries/lc.m3u"
+        },
+        {
+          "name": "🇼🇸 Samoa",
+          "url": "https://iptv-org.github.io/iptv/countries/ws.m3u"
+        },
+        {
+          "name": "🇸🇲 San Marino",
+          "url": "https://iptv-org.github.io/iptv/countries/sm.m3u"
+        },
+        {
+          "name": "🇸🇦 Saudi Arabia",
+          "url": "https://iptv-org.github.io/iptv/countries/sa.m3u"
+        },
+        {
+          "name": "🇸🇳 Senegal",
+          "url": "https://iptv-org.github.io/iptv/countries/sn.m3u"
+        },
+        {
+          "name": "🇷🇸 Serbia",
+          "url": "https://iptv-org.github.io/iptv/countries/rs.m3u"
+        },
+        {
+          "name": "🇸🇬 Singapore",
+          "url": "https://iptv-org.github.io/iptv/countries/sg.m3u"
+        },
+        {
+          "name": "🇸🇽 Sint Maarten",
+          "url": "https://iptv-org.github.io/iptv/countries/sx.m3u"
+        },
+        {
+          "name": "🇸🇰 Slovakia",
+          "url": "https://iptv-org.github.io/iptv/countries/sk.m3u"
+        },
+        {
+          "name": "🇸🇮 Slovenia",
+          "url": "https://iptv-org.github.io/iptv/countries/si.m3u"
+        },
+        {
+          "name": "🇸🇴 Somalia",
+          "url": "https://iptv-org.github.io/iptv/countries/so.m3u"
+        },
+        {
+          "name": "🇿🇦 South Africa",
+          "url": "https://iptv-org.github.io/iptv/countries/za.m3u"
+        },
+        {
+          "name": "🇰🇷 South Korea",
+          "url": "https://iptv-org.github.io/iptv/countries/kr.m3u"
+        },
+        {
+          "name": "🇪🇸 Spain",
+          "url": "https://iptv-org.github.io/iptv/countries/es.m3u"
+        },
+        {
+          "name": "🇱🇰 Sri Lanka",
+          "url": "https://iptv-org.github.io/iptv/countries/lk.m3u"
+        },
+        {
+          "name": "🇸🇩 Sudan",
+          "url": "https://iptv-org.github.io/iptv/countries/sd.m3u"
+        },
+        {
+          "name": "🇸🇷 Suriname",
+          "url": "https://iptv-org.github.io/iptv/countries/sr.m3u"
+        },
+        {
+          "name": "🇸🇪 Sweden",
+          "url": "https://iptv-org.github.io/iptv/countries/se.m3u"
+        },
+        {
+          "name": "🇨🇭 Switzerland",
+          "url": "https://iptv-org.github.io/iptv/countries/ch.m3u"
+        },
+        {
+          "name": "🇸🇾 Syria",
+          "url": "https://iptv-org.github.io/iptv/countries/sy.m3u"
+        },
+        {
+          "name": "🇹🇼 Taiwan",
+          "url": "https://iptv-org.github.io/iptv/countries/tw.m3u"
+        },
+        {
+          "name": "🇹🇯 Tajikistan",
+          "url": "https://iptv-org.github.io/iptv/countries/tj.m3u"
+        },
+        {
+          "name": "🇹🇿 Tanzania",
+          "url": "https://iptv-org.github.io/iptv/countries/tz.m3u"
+        },
+        {
+          "name": "🇹🇭 Thailand",
+          "url": "https://iptv-org.github.io/iptv/countries/th.m3u"
+        },
+        {
+          "name": "🇹🇬 Togo",
+          "url": "https://iptv-org.github.io/iptv/countries/tg.m3u"
+        },
+        {
+          "name": "🇹🇹 Trinidad and Tobago",
+          "url": "https://iptv-org.github.io/iptv/countries/tt.m3u"
+        },
+        {
+          "name": "🇹🇳 Tunisia",
+          "url": "https://iptv-org.github.io/iptv/countries/tn.m3u"
+        },
+        {
+          "name": "🇹🇷 Turkiye",
+          "url": "https://iptv-org.github.io/iptv/countries/tr.m3u"
+        },
+        {
+          "name": "🇹🇲 Turkmenistan",
+          "url": "https://iptv-org.github.io/iptv/countries/tm.m3u"
+        },
+        {
+          "name": "🇻🇮 U.S. Virgin Islands",
+          "url": "https://iptv-org.github.io/iptv/countries/vi.m3u"
+        },
+        {
+          "name": "🇺🇬 Uganda",
+          "url": "https://iptv-org.github.io/iptv/countries/ug.m3u"
+        },
+        {
+          "name": "🇺🇦 Ukraine",
+          "url": "https://iptv-org.github.io/iptv/countries/ua.m3u"
+        },
+        {
+          "name": "🇦🇪 United Arab Emirates",
+          "url": "https://iptv-org.github.io/iptv/countries/ae.m3u"
+        },
+        {
+          "name": "🇬🇧 United Kingdom",
+          "url": "https://iptv-org.github.io/iptv/countries/uk.m3u"
+        },
+        {
+          "name": "🇺🇸 United States",
+          "url": "https://iptv-org.github.io/iptv/countries/us.m3u"
+        },
+        {
+          "name": "🇺🇾 Uruguay",
+          "url": "https://iptv-org.github.io/iptv/countries/uy.m3u"
+        },
+        {
+          "name": "🇺🇿 Uzbekistan",
+          "url": "https://iptv-org.github.io/iptv/countries/uz.m3u"
+        },
+        {
+          "name": "🇻🇦 Vatican City",
+          "url": "https://iptv-org.github.io/iptv/countries/va.m3u"
+        },
+        {
+          "name": "🇻🇪 Venezuela",
+          "url": "https://iptv-org.github.io/iptv/countries/ve.m3u"
+        }
+      ]
+    },
+    {
+      "id": "region",
+      "label": "Region",
+      "items": [
+        {
+          "name": "Africa",
+          "url": "https://iptv-org.github.io/iptv/regions/afr.m3u"
+        },
+        {
+          "name": "Americas",
+          "url": "https://iptv-org.github.io/iptv/regions/amer.m3u"
+        },
+        {
+          "name": "Arab world",
+          "url": "https://iptv-org.github.io/iptv/regions/arab.m3u"
+        },
+        {
+          "name": "Asia",
+          "url": "https://iptv-org.github.io/iptv/regions/asia.m3u"
+        },
+        {
+          "name": "Asia-Pacific",
+          "url": "https://iptv-org.github.io/iptv/regions/apac.m3u"
+        },
+        {
+          "name": "Association of Southeast Asian Nations",
+          "url": "https://iptv-org.github.io/iptv/regions/asean.m3u"
+        },
+        {
+          "name": "Balkan",
+          "url": "https://iptv-org.github.io/iptv/regions/balkan.m3u"
+        },
+        {
+          "name": "Benelux",
+          "url": "https://iptv-org.github.io/iptv/regions/benelux.m3u"
+        },
+        {
+          "name": "Caribbean",
+          "url": "https://iptv-org.github.io/iptv/regions/carib.m3u"
+        },
+        {
+          "name": "Central America",
+          "url": "https://iptv-org.github.io/iptv/regions/cenamer.m3u"
+        },
+        {
+          "name": "Central and Eastern Europe",
+          "url": "https://iptv-org.github.io/iptv/regions/cee.m3u"
+        },
+        {
+          "name": "Central Asia",
+          "url": "https://iptv-org.github.io/iptv/regions/cas.m3u"
+        },
+        {
+          "name": "Central Europe",
+          "url": "https://iptv-org.github.io/iptv/regions/ceu.m3u"
+        },
+        {
+          "name": "Commonwealth of Independent States",
+          "url": "https://iptv-org.github.io/iptv/regions/cis.m3u"
+        },
+        {
+          "name": "East Africa",
+          "url": "https://iptv-org.github.io/iptv/regions/eaf.m3u"
+        },
+        {
+          "name": "East Asia",
+          "url": "https://iptv-org.github.io/iptv/regions/eas.m3u"
+        },
+        {
+          "name": "Europe",
+          "url": "https://iptv-org.github.io/iptv/regions/eur.m3u"
+        },
+        {
+          "name": "Europe, the Middle East and Africa",
+          "url": "https://iptv-org.github.io/iptv/regions/emea.m3u"
+        },
+        {
+          "name": "European Union",
+          "url": "https://iptv-org.github.io/iptv/regions/eu.m3u"
+        },
+        {
+          "name": "Gulf Cooperation Council",
+          "url": "https://iptv-org.github.io/iptv/regions/gcc.m3u"
+        },
+        {
+          "name": "Hispanic America",
+          "url": "https://iptv-org.github.io/iptv/regions/hispam.m3u"
+        },
+        {
+          "name": "Latin America",
+          "url": "https://iptv-org.github.io/iptv/regions/latam.m3u"
+        },
+        {
+          "name": "Latin America and the Caribbean",
+          "url": "https://iptv-org.github.io/iptv/regions/lac.m3u"
+        },
+        {
+          "name": "Maghreb",
+          "url": "https://iptv-org.github.io/iptv/regions/maghreb.m3u"
+        },
+        {
+          "name": "Middle East",
+          "url": "https://iptv-org.github.io/iptv/regions/mideast.m3u"
+        },
+        {
+          "name": "Middle East and North Africa",
+          "url": "https://iptv-org.github.io/iptv/regions/mena.m3u"
+        },
+        {
+          "name": "Nordics",
+          "url": "https://iptv-org.github.io/iptv/regions/nord.m3u"
+        },
+        {
+          "name": "North America",
+          "url": "https://iptv-org.github.io/iptv/regions/noram.m3u"
+        },
+        {
+          "name": "Northern America",
+          "url": "https://iptv-org.github.io/iptv/regions/nam.m3u"
+        },
+        {
+          "name": "Northern Europe",
+          "url": "https://iptv-org.github.io/iptv/regions/neu.m3u"
+        },
+        {
+          "name": "Oceania",
+          "url": "https://iptv-org.github.io/iptv/regions/oce.m3u"
+        },
+        {
+          "name": "South America",
+          "url": "https://iptv-org.github.io/iptv/regions/southam.m3u"
+        },
+        {
+          "name": "South Asia",
+          "url": "https://iptv-org.github.io/iptv/regions/sas.m3u"
+        },
+        {
+          "name": "Southeast Asia",
+          "url": "https://iptv-org.github.io/iptv/regions/sea.m3u"
+        },
+        {
+          "name": "Southern Africa",
+          "url": "https://iptv-org.github.io/iptv/regions/saf.m3u"
+        },
+        {
+          "name": "Southern Europe",
+          "url": "https://iptv-org.github.io/iptv/regions/ser.m3u"
+        }
+      ]
+    }
+  ]
+}

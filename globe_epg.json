@@ -1,0 +1,429 @@
+{
+  "base": "https://raw.githubusercontent.com/globetvapp/epg/main/",
+  "countries": {
+    "Albania": [
+      "albania1.xml.gz"
+    ],
+    "Argentina": [
+      "argentina1.xml.gz",
+      "argentina2.xml.gz",
+      "argentina3.xml.gz",
+      "argentina4.xml.gz",
+      "argentina5.xml.gz"
+    ],
+    "Australia": [
+      "australia1.xml.gz",
+      "australia2.xml.gz",
+      "australia3.xml.gz",
+      "australia4.xml.gz"
+    ],
+    "Austria": [
+      "austria1.xml.gz",
+      "austria2.xml.gz",
+      "austria3.xml.gz"
+    ],
+    "Belgium": [
+      "belgium1.xml.gz",
+      "belgium2.xml.gz",
+      "belgium3.xml.gz",
+      "belgium4.xml.gz"
+    ],
+    "Bolivia": [
+      "bolivia1.xml.gz",
+      "bolivia2.xml.gz"
+    ],
+    "Bosnia": [
+      "bosnia1.xml.gz",
+      "bosnia2.xml.gz"
+    ],
+    "Brazil": [
+      "brazil1.xml.gz",
+      "brazil2.xml.gz",
+      "brazil3.xml.gz",
+      "brazil4.xml.gz"
+    ],
+    "Bulgaria": [
+      "bulgaria1.xml.gz",
+      "bulgaria2.xml.gz"
+    ],
+    "Canada": [
+      "canada1.xml.gz",
+      "canada2.xml.gz",
+      "canada3.xml.gz"
+    ],
+    "Caribbean": [
+      "caribbean1.xml.gz"
+    ],
+    "Chile": [
+      "chile1.xml.gz",
+      "chile2.xml.gz"
+    ],
+    "China": [
+      "china1.xml.gz",
+      "china2.xml.gz"
+    ],
+    "Colombia": [
+      "colombia1.xml.gz",
+      "colombia2.xml.gz"
+    ],
+    "Costarica": [
+      "costarica1.xml.gz"
+    ],
+    "Croatia": [
+      "croatia1.xml.gz",
+      "croatia2.xml.gz",
+      "croatia3.xml.gz",
+      "croatia4.xml.gz",
+      "croatia5.xml.gz"
+    ],
+    "Cyprus": [
+      "cyprus1.xml.gz"
+    ],
+    "Czech": [
+      "czech1.xml.gz",
+      "czech2.xml.gz"
+    ],
+    "Denmark": [
+      "denmark1.xml.gz",
+      "denmark2.xml.gz",
+      "denmark3.xml.gz",
+      "denmark4.xml.gz",
+      "denmark5.xml.gz",
+      "denmark6.xml.gz"
+    ],
+    "Dominican": [
+      "dominican1.xml.gz"
+    ],
+    "Ecuador": [
+      "ecuador1.xml.gz"
+    ],
+    "Egypt": [
+      "egypt1.xml.gz",
+      "egypt2.xml.gz"
+    ],
+    "Elsalvador": [
+      "elsalvador1.xml.gz"
+    ],
+    "Estonia": [
+      "estonia1.xml.gz"
+    ],
+    "Finland": [
+      "finland1.xml.gz",
+      "finland2.xml.gz",
+      "finland3.xml.gz",
+      "finland4.xml.gz"
+    ],
+    "France": [
+      "france1.xml.gz",
+      "france2.xml.gz"
+    ],
+    "Georgia": [
+      "georgia1.xml.gz",
+      "georgia2.xml.gz"
+    ],
+    "Germany": [
+      "germany1.xml.gz",
+      "germany2.xml.gz",
+      "germany3.xml.gz",
+      "germany4.xml.gz"
+    ],
+    "Ghana": [
+      "ghana1.xml.gz"
+    ],
+    "Greece": [
+      "greece1.xml.gz",
+      "greece2.xml.gz",
+      "greece3.xml.gz"
+    ],
+    "Guatemala": [
+      "guatemala1.xml.gz"
+    ],
+    "Honduras": [
+      "honduras1.xml.gz"
+    ],
+    "Hongkong": [
+      "hongkong1.xml.gz",
+      "hongkong2.xml.gz",
+      "hongkong3.xml.gz"
+    ],
+    "Hungary": [
+      "hungary1.xml.gz"
+    ],
+    "Iceland": [
+      "iceland1.xml.gz",
+      "iceland2.xml.gz",
+      "iceland3.xml.gz"
+    ],
+    "India": [
+      "india1.xml.gz",
+      "india2.xml.gz",
+      "india3.xml.gz",
+      "india4.xml.gz",
+      "india5.xml.gz"
+    ],
+    "Indonesia": [
+      "indonesia1.xml.gz",
+      "indonesia2.xml.gz",
+      "indonesia3.xml.gz",
+      "indonesia4.xml.gz",
+      "indonesia5.xml.gz",
+      "indonesia6.xml.gz"
+    ],
+    "Ireland": [
+      "ireland1.xml.gz"
+    ],
+    "Israel": [
+      "israel1.xml.gz",
+      "israel2.xml.gz"
+    ],
+    "Italy": [
+      "italy1.xml.gz",
+      "italy2.xml.gz",
+      "italy3.xml.gz",
+      "italy4.xml.gz",
+      "italy5.xml.gz"
+    ],
+    "Ivorycoast": [
+      "ivorycoast1.xml.gz"
+    ],
+    "Jamaica": [
+      "jamaica1.xml.gz"
+    ],
+    "Kenya": [
+      "kenya1.xml.gz"
+    ],
+    "Korea": [
+      "korea1.xml.gz"
+    ],
+    "Latvia": [
+      "latvia1.xml.gz",
+      "latvia2.xml.gz"
+    ],
+    "Lithuania": [
+      "lithuania1.xml.gz",
+      "lithuania2.xml.gz",
+      "lithuania3.xml.gz"
+    ],
+    "Luxembourg": [
+      "luxembourg1.xml.gz"
+    ],
+    "Macau": [
+      "macau1.xml.gz"
+    ],
+    "Madagascar": [
+      "madagascar1.xml.gz"
+    ],
+    "Malawi": [
+      "malawi1.xml.gz"
+    ],
+    "Malaysia": [
+      "malaysia1.xml.gz",
+      "malaysia2.xml.gz",
+      "malaysia3.xml.gz"
+    ],
+    "Malta": [
+      "malta1.xml.gz"
+    ],
+    "Mauritius": [
+      "mauritius1.xml.gz"
+    ],
+    "Mexico": [
+      "mexico1.xml.gz",
+      "mexico2.xml.gz"
+    ],
+    "Mongolia": [
+      "mongolia1.xml.gz"
+    ],
+    "Montenegro": [
+      "montenegro1.xml.gz"
+    ],
+    "Morocco": [
+      "morocco1.xml.gz",
+      "morocco2.xml.gz"
+    ],
+    "Mozambique": [
+      "mozambique1.xml.gz"
+    ],
+    "Namibia": [
+      "namibia1.xml.gz"
+    ],
+    "Netherlands": [
+      "netherlands1.xml.gz",
+      "netherlands2.xml.gz"
+    ],
+    "Newcaledonia": [
+      "newcaledonia1.xml.gz"
+    ],
+    "Newzealand": [
+      "newzealand1.xml.gz"
+    ],
+    "Nigeria": [
+      "nigeria1.xml.gz"
+    ],
+    "Norway": [
+      "norway1.xml.gz",
+      "norway2.xml.gz"
+    ],
+    "Pakistan": [
+      "pakistan1.xml.gz",
+      "pakistan2.xml.gz"
+    ],
+    "Panama": [
+      "panama1.xml.gz"
+    ],
+    "Paraguay": [
+      "paraguay1.xml.gz",
+      "paraguay2.xml.gz"
+    ],
+    "Peru": [
+      "peru1.xml.gz",
+      "peru2.xml.gz"
+    ],
+    "Philippines": [
+      "philippines1.xml.gz",
+      "philippines2.xml.gz",
+      "philippines3.xml.gz"
+    ],
+    "Poland": [
+      "poland1.xml.gz",
+      "poland2.xml.gz"
+    ],
+    "Portugal": [
+      "portugal1.xml.gz",
+      "portugal2.xml.gz"
+    ],
+    "Puertorico": [
+      "puertorico1.xml.gz",
+      "puertorico2.xml.gz"
+    ],
+    "Qatar": [
+      "qatar1.xml.gz",
+      "qatar2.xml.gz",
+      "qatar3.xml.gz",
+      "qatar4.xml.gz",
+      "qatar5.xml.gz",
+      "qatar6.xml.gz"
+    ],
+    "Romania": [
+      "romania1.xml.gz",
+      "romania2.xml.gz"
+    ],
+    "Russia": [
+      "russia1.xml.gz",
+      "russia2.xml.gz",
+      "russia3.xml.gz"
+    ],
+    "Saudiarabia": [
+      "saudiarabia1.xml.gz",
+      "saudiarabia2.xml.gz",
+      "saudiarabia3.xml.gz",
+      "saudiarabia4.xml.gz"
+    ],
+    "Scotland": [
+      "scotland1.xml.gz"
+    ],
+    "Serbia": [
+      "serbia1.xml.gz",
+      "serbia2.xml.gz",
+      "serbia3.xml.gz"
+    ],
+    "Singapore": [
+      "singapore1.xml.gz",
+      "singapore2.xml.gz",
+      "singapore3.xml.gz"
+    ],
+    "Slovakia": [
+      "slovakia1.xml.gz",
+      "slovakia2.xml.gz",
+      "slovakia3.xml.gz"
+    ],
+    "Slovenia": [
+      "slovenia1.xml.gz",
+      "slovenia2.xml.gz",
+      "slovenia3.xml.gz"
+    ],
+    "Southafrica": [
+      "southafrica1.xml.gz",
+      "southafrica2.xml.gz"
+    ],
+    "Spain": [
+      "spain1.xml.gz",
+      "spain2.xml.gz",
+      "spain3.xml.gz",
+      "spain4.xml.gz",
+      "spain5.xml.gz"
+    ],
+    "Sports": [
+      "sports1.xml.gz",
+      "sports2.xml.gz",
+      "sports3.xml.gz"
+    ],
+    "Sweden": [
+      "sweden1.xml.gz",
+      "sweden2.xml.gz",
+      "sweden3.xml.gz",
+      "sweden4.xml.gz"
+    ],
+    "Switzerland": [
+      "switzerland1.xml.gz",
+      "switzerland2.xml.gz",
+      "switzerland3.xml.gz"
+    ],
+    "Taiwan": [
+      "taiwan1.xml.gz",
+      "taiwan2.xml.gz"
+    ],
+    "Thailand": [
+      "thailand1.xml.gz",
+      "thailand2.xml.gz"
+    ],
+    "Turkey": [
+      "turkey1.xml.gz",
+      "turkey2.xml.gz",
+      "turkey3.xml.gz",
+      "turkey4.xml.gz",
+      "turkey5.xml.gz"
+    ],
+    "Uae": [
+      "uae1.xml.gz",
+      "uae2.xml.gz"
+    ],
+    "Uganda": [
+      "uganda1.xml.gz"
+    ],
+    "Ukraine": [
+      "ukraine1.xml.gz"
+    ],
+    "Unitedkingdom": [
+      "unitedkingdom1.xml.gz",
+      "unitedkingdom2.xml.gz",
+      "unitedkingdom3.xml.gz",
+      "unitedkingdom4.xml.gz",
+      "unitedkingdom5.xml.gz"
+    ],
+    "Uruguay": [
+      "uruguay1.xml.gz",
+      "uruguay2.xml.gz"
+    ],
+    "Usa": [
+      "usa1.xml.gz",
+      "usa2.xml.gz",
+      "usa3.xml.gz",
+      "usa4.xml.gz",
+      "usa5.xml.gz",
+      "usa6.xml.gz"
+    ],
+    "Uzbekistan": [
+      "uzbekistan1.xml.gz"
+    ],
+    "Venezuela": [
+      "venezuela1.xml.gz"
+    ],
+    "Vietnam": [
+      "vietnam1.xml.gz"
+    ],
+    "Zambia": [
+      "zambia1.xml.gz"
+    ]
+  }
+}
