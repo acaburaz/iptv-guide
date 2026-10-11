@@ -1,6 +1,6 @@
-"""IPTV Guide — search a large M3U list and open one channel in VLC.
+"""IPTV Guide — the local index behind the VLC plugin.
 
-The browser only asks for a window of channels. VLC never sees the playlist.
+VLC asks for one page of channels and plays one stream. The playlist stays here.
 """
 
 from __future__ import annotations
@@ -15,7 +15,6 @@ import traceback
 import urllib.error
 import urllib.request
 import uuid
-import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
@@ -26,7 +25,6 @@ from player import VlcPlayer
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 PLAYLISTS = DATA / "playlists"
-STATIC = ROOT / "static" / "index.html"
 UPLOAD_LIMIT = 640 * 1024 * 1024
 UPLOAD_MB = UPLOAD_LIMIT // (1024 * 1024)
 EXT_VERSION = 1
@@ -70,7 +68,7 @@ class Handler(BaseHTTPRequestHandler):
         path = parsed.path
         query = parse_qs(parsed.query)
         if path in {"/", "/index.html"}:
-            self._file(STATIC, "text/html; charset=utf-8")
+            self._text(200, "IPTV Guide runs inside VLC. Quit VLC, open it, then choose View -> IPTV Guide.\n")
             return
         if path == "/favicon.ico":
             self.send_response(204)
@@ -294,13 +292,10 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(raw)
 
-    def _file(self, path: Path, content_type: str) -> None:
-        if not path.is_file():
-            self._json(500, {"error": "Interface file is missing"})
-            return
-        raw = path.read_bytes()
-        self.send_response(200)
-        self.send_header("Content-Type", content_type)
+    def _text(self, code: int, message: str) -> None:
+        raw = message.encode("utf-8")
+        self.send_response(code)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
         self.send_header("Content-Length", str(len(raw)))
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
@@ -539,7 +534,7 @@ def install_vlc_extension() -> Path | None:
     return dest
 
 
-def serve(port: int, open_browser: bool) -> None:
+def serve(port: int) -> None:
     httpd = None
     chosen = port
     for candidate in range(port, port + 20):
@@ -555,18 +550,16 @@ def serve(port: int, open_browser: bool) -> None:
     DATA.mkdir(parents=True, exist_ok=True)
     (DATA / "port.txt").write_text(str(chosen), encoding="ascii")
     url = f"http://127.0.0.1:{chosen}/"
-    print(f"IPTV Guide  {url}")
+    print(f"IPTV Guide index  {url}")
     extension = install_vlc_extension()
     if extension:
-        print(f"VLC plugin {extension}")
-        print("In VLC: restart, then View -> IPTV Guide")
+        print(f"VLC plugin        {extension}")
+        print("Quit VLC completely, open it again, then View -> IPTV Guide")
     if player.path:
-        print(f"VLC        {player.path}")
+        print(f"VLC               {player.path}")
     else:
-        print("VLC        not found — install it from https://www.videolan.org/")
-    print("Stop       Ctrl+C  (VLC keeps playing the current channel)")
-    if open_browser:
-        threading.Timer(0.25, lambda: webbrowser.open(url)).start()
+        print("VLC               not found. Install it from https://www.videolan.org/")
+    print("Stop              Ctrl+C  (VLC keeps playing the current channel)")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -773,13 +766,13 @@ def selftest() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Search an IPTV M3U list and play one channel in VLC")
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument("--no-browser", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args()
     if args.selftest:
         selftest()
         return
-    serve(args.port, open_browser=not args.no_browser)
+    serve(args.port)
 
 
 if __name__ == "__main__":

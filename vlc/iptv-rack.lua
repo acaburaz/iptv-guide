@@ -10,10 +10,8 @@
 ]]
 
 -- VLC scans this file before the string library exists, so keep this check plain.
+-- install.bat and install.sh replace the path below.
 local APP_DIR = [[__IPTV_RACK_DIR__]]
-if APP_DIR == "__IPTV_RACK_DIR__" then
-  APP_DIR = "C:\\Tools\\iptv-browser"
-end
 
 local PORT = 8765
 local PAGE = 40
@@ -269,7 +267,7 @@ function ensure_server()
     return false
   end
   if not os or not os.execute then
-    set_status("Run start.bat once so the index is up, then open this panel again.")
+    set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
     return false
   end
   os.execute('start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
@@ -285,7 +283,7 @@ function ensure_server()
     end
     tries = tries + 1
   end
-  set_status("Could not start the index. Run start.bat, then open this panel again.")
+  set_status("Could not start the index. Install Python 3, quit VLC, and open this panel again.")
   return false
 end
 

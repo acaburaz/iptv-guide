@@ -1,13 +1,29 @@
 # IPTV Guide
 
-Search a huge M3U on this PC and play one channel in VLC. The playlist never goes into VLC's own list.
+A VLC plugin. It searches a large M3U on this PC and plays one channel, so the playlist never goes into VLC's own list.
+
+Python 3 and VLC 3 are required.
+
+## Install
+
+Windows Command Prompt:
 
 ```bat
-start.bat
+install.bat
 ```
 
-Then open http://127.0.0.1:8765/ . In VLC, quit fully once and open View → IPTV Guide.
+Git Bash:
 
-Public lists are built in. Channels without a programme fall back to the [Globe TV guides](https://github.com/globetvapp/epg).
+```bash
+./install.sh
+```
+
+The script copies the plugin into `%APPDATA%\vlc\lua\extensions`. Quit VLC completely so it reloads extensions, open VLC again, and choose **View → IPTV Guide**.
+
+Opening the panel starts a local index on this computer. It listens only on localhost.
+
+## Use
+
+Point **Browse** at an M3U file and click **Index**. Open a category, then play one channel. **Public** opens the built-in lists. A channel with no programme falls back to the [Globe TV guides](https://github.com/globetvapp/epg).
 
 [Buy me a coffee](https://donate.stripe.com/dRm4gzd6Ufx49uBfo76g800)
