@@ -10,4 +10,4 @@ Then open http://127.0.0.1:8765/ . In VLC, quit fully once and open View → IPT
 
 Public lists are built in. Channels without a programme fall back to the [Globe TV guides](https://github.com/globetvapp/epg).
 
-[Buy me a coffee](https://www.buymeacoffee.com/acaburaz)
+[Buy me a coffee](https://donate.stripe.com/dRm4gzd6Ufx49uBfo76g800)
