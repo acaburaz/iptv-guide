@@ -31,6 +31,22 @@ UPLOAD_LIMIT = 640 * 1024 * 1024
 UPLOAD_MB = UPLOAD_LIMIT // (1024 * 1024)
 EXT_VERSION = 1
 
+
+def _bind_stdio(log_path: Path | None = None) -> None:
+    """pythonw.exe has no console. Printing there would kill the index the plugin just started."""
+    if sys.stdout is not None and sys.stderr is not None:
+        return
+    target = log_path or (DATA / "index.log")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    handle = open(target, "w", encoding="utf-8", buffering=1)
+    if sys.stdout is None:
+        sys.stdout = handle
+    if sys.stderr is None:
+        sys.stderr = handle
+
+
+_bind_stdio()
+
 catalog = Catalog(DATA / "catalog.db")
 player = VlcPlayer()
 PUBLIC_LISTS = json.loads((ROOT / "public_playlists.json").read_text(encoding="utf-8"))
@@ -998,6 +1014,23 @@ def selftest() -> None:
             catalog.delete_source(imported_id)
         httpd.shutdown()
         httpd.server_close()
+
+    saved_out, saved_err = sys.stdout, sys.stderr
+    log_path = tmp / "index.log"
+    try:
+        sys.stdout = None
+        sys.stderr = None
+        _bind_stdio(log_path)
+        assert sys.stdout is not None and sys.stderr is not None
+        print("index-alive")
+        sys.stdout.flush()
+    finally:
+        sys.stdout = saved_out
+        sys.stderr = saved_err
+    assert "index-alive" in log_path.read_text(encoding="utf-8")
+    launcher = (ROOT / "vlc" / "start-index.cmd").read_text(encoding="utf-8")
+    assert "WindowsApps" in launcher and "pythonw" in launcher
+    assert "Python 3 was not found." in launcher
 
     print(
         f"SELFTEST_OK import_s={elapsed:.2f} search_ms={search_ms:.1f} "

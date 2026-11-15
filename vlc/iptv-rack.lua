@@ -248,6 +248,33 @@ function ping()
   return status == 200 and body and string.find(body, '"version"', 1, true) ~= nil
 end
 
+function tail_log(name)
+  local open_fn = io and io.open
+  if not open_fn then
+    return ""
+  end
+  local handle = open_fn(APP_DIR .. "\\data\\" .. name, "r")
+  if not handle then
+    return ""
+  end
+  local last = ""
+  while true do
+    local line = handle:read("*l")
+    if not line then
+      break
+    end
+    line = trim(line)
+    if line ~= "" then
+      last = line
+    end
+  end
+  handle:close()
+  if #last > 180 then
+    last = string.sub(last, 1, 180)
+  end
+  return last
+end
+
 function ensure_server()
   PORT = 8765
   if ping() then
@@ -270,6 +297,7 @@ function ensure_server()
     set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
     return false
   end
+  set_status("Starting the index...")
   local starter = APP_DIR .. "\\vlc\\start-index.cmd"
   local found = false
   if io and io.open then
@@ -284,9 +312,14 @@ function ensure_server()
   else
     os.execute('start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
   end
+  local note = tail_log("start.log")
+  if string.find(note, "Python 3 was not found", 1, true) then
+    set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
+    return false
+  end
   local tries = 0
-  while tries < 8 do
-    pause_ms(500)
+  while tries < 20 do
+    pause_ms(400)
     local file_port = read_port_file()
     if file_port then
       PORT = file_port
@@ -296,7 +329,15 @@ function ensure_server()
     end
     tries = tries + 1
   end
-  set_status("Could not start the index. Install Python 3, quit VLC, and open this panel again.")
+  local detail = tail_log("index.log")
+  if detail == "" then
+    detail = note
+  end
+  if detail ~= "" then
+    set_status("Could not start the index. " .. detail)
+  else
+    set_status("Could not start the index. Install Python 3, quit VLC, and open this panel again.")
+  end
   return false
 end
 
