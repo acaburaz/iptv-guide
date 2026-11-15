@@ -8,7 +8,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
+import tempfile
 import threading
 import time
 import traceback
@@ -34,6 +36,7 @@ player = VlcPlayer()
 PUBLIC_LISTS = json.loads((ROOT / "public_playlists.json").read_text(encoding="utf-8"))
 jobs: dict[str, dict] = {}
 jobs_lock = threading.Lock()
+_pick_lock = threading.Lock()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -159,6 +162,34 @@ class Handler(BaseHTTPRequestHandler):
                 return
             label = file_path.stem[:120] or "Playlist"
             job = _start_import(file_path, f"path:{file_path}", label)
+            self._json(200, job)
+            return
+        if path == "/api/ext/pick":
+            kind = (_first(query, "kind") or "m3u").strip().lower()
+            try:
+                chosen = _choose_file(kind)
+            except ValueError as exc:
+                self._json(400, {"error": str(exc)})
+                return
+            if not chosen:
+                self._json(200, {"path": ""})
+                return
+            if kind == "epg":
+                try:
+                    file_path = _epg_file(chosen)
+                except ValueError as exc:
+                    self._json(400, {"error": str(exc)})
+                    return
+                job = _start_epg(file_path)
+            else:
+                try:
+                    file_path = _local_playlist(chosen)
+                except ValueError as exc:
+                    self._json(400, {"error": str(exc)})
+                    return
+                label = file_path.stem[:120] or "Playlist"
+                job = _start_import(file_path, f"path:{file_path}", label)
+            job["path"] = str(file_path)
             self._json(200, job)
             return
         if path == "/api/profiles":
@@ -467,6 +498,87 @@ def _spool(handler: BaseHTTPRequestHandler, dest: Path, limit: int) -> None:
         raise ValueError("Upload ended early")
 
 
+def _decode_picker_output(raw: bytes) -> str:
+    """PowerShell's redirected stdout is often UTF-16. Return the last path line."""
+    if not raw:
+        return ""
+    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+        text = raw.decode("utf-16", "replace")
+    elif b"\x00" in raw[:8]:
+        text = raw.decode("utf-16-le", "replace")
+    else:
+        text = raw.decode("utf-8", "replace")
+    text = text.replace("\ufeff", "").replace("\x00", "").strip()
+    lines = [line.strip().strip('"') for line in text.splitlines() if line.strip()]
+    return lines[-1] if lines else ""
+
+
+def _powershell_executable() -> str:
+    system = os.environ.get("SystemRoot") or os.environ.get("WINDIR") or r"C:\Windows"
+    candidate = Path(system) / "System32" / "WindowsPowerShell" / "v1.0" / "powershell.exe"
+    if candidate.is_file():
+        return str(candidate)
+    return "powershell"
+
+
+def _choose_file(kind: str) -> str:
+    """Open the native file dialog. An empty string means the user cancelled."""
+    if kind not in {"m3u", "epg"}:
+        raise ValueError("Unknown file type")
+    if not _pick_lock.acquire(blocking=False):
+        raise ValueError("A file dialog is already open")
+    try:
+        if os.name != "nt":
+            raise ValueError("Paste the full path to the file, then click Index.")
+        script = ROOT / "vlc" / "pick-m3u.ps1"
+        if not script.is_file():
+            raise ValueError("The file dialog script is missing")
+        try:
+            os.remove(str(script) + ":Zone.Identifier")
+        except OSError:
+            pass
+        fd, name = tempfile.mkstemp(prefix="iptv-pick-", suffix=".txt")
+        os.close(fd)
+        out = Path(name)
+        try:
+            try:
+                completed = subprocess.run(
+                    [
+                        _powershell_executable(),
+                        "-NoProfile",
+                        "-STA",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-File",
+                        str(script),
+                        "-Kind",
+                        kind,
+                        "-OutFile",
+                        str(out),
+                    ],
+                    capture_output=True,
+                    timeout=600,
+                    creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+                )
+            except FileNotFoundError as exc:
+                raise ValueError("PowerShell is required to choose a file. Paste the full path, then click Index.") from exc
+            except subprocess.TimeoutExpired as exc:
+                raise ValueError("The file dialog timed out. Paste the full path, then click Index.") from exc
+            if out.is_file() and out.stat().st_size > 0:
+                chosen = out.read_text(encoding="utf-8").replace("\ufeff", "").strip()
+            else:
+                chosen = _decode_picker_output(completed.stdout)
+            if completed.returncode != 0 and not chosen:
+                detail = _decode_picker_output(completed.stderr) or _decode_picker_output(completed.stdout)
+                detail = " ".join(detail.split())[:300]
+                raise ValueError(detail or "Could not open the file dialog. Paste the full path, then click Index.")
+            return chosen
+        finally:
+            out.unlink(missing_ok=True)
+    finally:
+        _pick_lock.release()
+
+
 def _local_playlist(raw: str) -> Path:
     text = raw.strip().strip('"')
     if not text:
@@ -569,10 +681,11 @@ def serve(port: int) -> None:
 
 
 def selftest() -> None:
+    global _choose_file
     import tempfile
     import time
 
-    from m3u import iter_channels
+    from m3u import is_hls_file, iter_channels, looks_like_playlist
 
     tmp = Path(tempfile.mkdtemp(prefix="iptv-rack-"))
     sample = tmp / "sample.m3u"
@@ -602,6 +715,29 @@ def selftest() -> None:
     )
     hls_rows = list(iter_channels(hls, "https://cdn.example/movie.m3u8"))
     assert len(hls_rows) == 1 and hls_rows[0]["url"] == "https://cdn.example/movie.m3u8"
+
+    odd = tmp / "odd.m3u"
+    odd.write_text(
+        "#extm3u\n"
+        '#extinf:-1 tvg-id="svt1" group-title="Sweden",SVT\n'
+        '"http://example.invalid/svt"\n'
+        "#EXTINF:-1,IPv6\n"
+        "http://[2001:db8::1]/live\n",
+        encoding="utf-8",
+    )
+    odd_rows = list(iter_channels(odd, "name:odd.m3u"))
+    assert odd_rows[0]["name"] == "SVT" and odd_rows[0]["group"] == "Sweden", odd_rows
+    assert odd_rows[0]["url"] == "http://example.invalid/svt", odd_rows
+    assert odd_rows[1]["url"] == "http://[2001:db8::1]/live", odd_rows
+    mixed = tmp / "mixed.m3u"
+    mixed.write_text(
+        "#EXTM3U\n#EXT-X-TARGETDURATION:10\n"
+        '#EXTINF:-1 group-title="News",One\nhttp://example.invalid/1\n'
+        '#EXTINF:-1 group-title="News",Two\nhttp://example.invalid/2\n',
+        encoding="utf-8",
+    )
+    assert not is_hls_file(mixed)
+    assert len(list(iter_channels(mixed, "name:mixed.m3u"))) == 2
 
     big = tmp / "big.m3u"
     count = 20000
@@ -756,6 +892,112 @@ def selftest() -> None:
     assert any(item["name"].endswith("Sweden") for item in listed)
     assert all(not item["url"].endswith("/xxx.m3u") for item in listed)
     assert len(listed) > 400
+
+    swedish = tmp / "Hämtade filer.m3u"
+    swedish.write_text(
+        '#EXTM3U\n#EXTINF:-1 group-title="Nyheter",Rapport\nhttp://example.invalid/sv\n',
+        encoding="utf-8",
+    )
+    assert looks_like_playlist(swedish)
+    odd_id = store.import_file(odd, "name:odd.m3u", "odd")
+    assert store.groups(odd_id)["total"] == 2
+    swedish_id = store.import_file(swedish, f"path:{swedish}", swedish.stem)
+    found_sv = store.channels(swedish_id, group="Nyheter", query="Rapport", offset=0, limit=5, view="all")
+    assert found_sv["total"] == 1, found_sv
+    picked = "C:\\Users\\Åsa\\Hämtade filer\\lista.m3u"
+    assert _decode_picker_output(picked.encode("utf-16")) == picked
+    assert _decode_picker_output(picked.encode("utf-8")) == picked
+    assert _decode_picker_output(b"\xff\xfe" + "C:\\list.m3u".encode("utf-16-le")) == "C:\\list.m3u"
+    try:
+        _choose_file("nope")
+    except ValueError as exc:
+        assert "Unknown" in str(exc)
+    else:
+        raise AssertionError("bad kind should fail")
+    if os.name != "nt":
+        try:
+            _choose_file("m3u")
+        except ValueError as exc:
+            assert "Paste the full path" in str(exc)
+        else:
+            raise AssertionError("file dialog should not open off Windows")
+
+    original_choose = _choose_file
+    chosen_path = {"value": str(swedish)}
+
+    def fake_choose(kind: str) -> str:
+        assert kind == "m3u"
+        return chosen_path["value"]
+
+    _choose_file = fake_choose
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    httpd.daemon_threads = True
+    thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    thread.start()
+    imported_id = None
+    try:
+        with urllib.request.urlopen(
+            f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
+            timeout=10,
+        ) as res:
+            payload = json.loads(res.read().decode("utf-8"))
+        assert payload.get("path") == str(swedish.resolve()), payload
+        assert payload.get("id"), payload
+        deadline = time.time() + 10
+        state = None
+        while time.time() < deadline:
+            state = _job_payload(payload["id"])
+            if state and state["state"] != "running":
+                break
+            time.sleep(0.05)
+        assert state and state["state"] == "done", state
+        imported_id = state["source_id"]
+        from urllib.parse import quote
+
+        index_url = (
+            f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/index?path="
+            + quote(str(swedish))
+        )
+        with urllib.request.urlopen(index_url, timeout=10) as res:
+            again = json.loads(res.read().decode("utf-8"))
+        assert again.get("id"), again
+        deadline = time.time() + 10
+        state = None
+        while time.time() < deadline:
+            state = _job_payload(again["id"])
+            if state and state["state"] != "running":
+                break
+            time.sleep(0.05)
+        assert state and state["state"] == "done", state
+        chosen_path["value"] = ""
+        with urllib.request.urlopen(
+            f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
+            timeout=10,
+        ) as res:
+            cancelled = json.loads(res.read().decode("utf-8"))
+        assert cancelled == {"path": ""}, cancelled
+
+        def fake_bad(kind: str) -> str:
+            raise ValueError("dialog failed")
+
+        _choose_file = fake_bad
+        try:
+            urllib.request.urlopen(
+                f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
+                timeout=10,
+            )
+        except urllib.error.HTTPError as exc:
+            assert exc.code == 400, exc.code
+            body = json.loads(exc.read().decode("utf-8"))
+            assert body["error"] == "dialog failed", body
+        else:
+            raise AssertionError("picker error should be HTTP 400")
+    finally:
+        _choose_file = original_choose
+        if imported_id:
+            catalog.delete_source(imported_id)
+        httpd.shutdown()
+        httpd.server_close()
 
     print(
         f"SELFTEST_OK import_s={elapsed:.2f} search_ms={search_ms:.1f} "

@@ -270,7 +270,20 @@ function ensure_server()
     set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
     return false
   end
-  os.execute('start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
+  local starter = APP_DIR .. "\\vlc\\start-index.cmd"
+  local found = false
+  if io and io.open then
+    local handle = io.open(starter, "r")
+    if handle then
+      handle:close()
+      found = true
+    end
+  end
+  if found then
+    os.execute('start "IPTV Guide" /MIN "' .. starter .. '"')
+  else
+    os.execute('start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
+  end
   local tries = 0
   while tries < 8 do
     pause_ms(500)
@@ -877,12 +890,40 @@ function watch_job(id)
   set_status("Still working. Click Refresh when the count stops climbing.")
 end
 
-function pick_file(kind)
+function busy_job()
+  if not active_job then
+    return false
+  end
+  local running = fetch_job(active_job)
+  if running and running.state == "running" then
+    watch_job(active_job)
+    return true
+  end
+  active_job = nil
+  return false
+end
+
+function decode_picked(text)
+  if not text then
+    return ""
+  end
+  if string.sub(text, 1, 2) == "\255\254" or string.find(text, "\0", 1, true) then
+    text = string.gsub(text, "%z", "")
+    text = string.gsub(text, "^\255\254", "")
+    text = string.gsub(text, "^\254\255", "")
+  end
+  text = string.gsub(text, "^\239\187\191", "")
+  return trim(text)
+end
+
+function pick_file_local(kind)
   local open_fn = io and io.popen
   if not open_fn then
     return nil
   end
-  local handle = open_fn('powershell -NoProfile -STA -File "' .. APP_DIR .. '\\vlc\\pick-m3u.ps1" -Kind ' .. kind)
+  local command = 'powershell -NoProfile -STA -ExecutionPolicy Bypass -File "'
+    .. APP_DIR .. '\\vlc\\pick-m3u.ps1" -Kind ' .. kind
+  local handle = open_fn(command)
   if not handle then
     return nil
   end
@@ -892,40 +933,74 @@ function pick_file(kind)
     if not line then
       break
     end
-    if trim(line) ~= "" then
-      path = trim(line)
+    line = decode_picked(line)
+    if line ~= "" then
+      path = line
     end
   end
   handle:close()
   return path
 end
 
+function apply_picked_path(widget, path)
+  if widget and path and path ~= "" then
+    pcall(function()
+      widget:set_text(path)
+    end)
+  end
+end
+
+function pick_and_run(kind, widget, empty_message)
+  if not ensure_server() then
+    return
+  end
+  if busy_job() then
+    return
+  end
+  local status, body = http_get("/api/ext/pick?kind=" .. urlencode(kind))
+  if status == nil or status == 404 then
+    local path = pick_file_local(kind)
+    if path == nil then
+      if kind == "epg" then
+        set_status("Paste the full path to the XMLTV file in EPG file, then click Load.")
+      else
+        set_status("Paste the full path to the .m3u file in M3U file, then click Index.")
+      end
+      return
+    end
+    if path == "" then
+      set_status(empty_message)
+      return
+    end
+    apply_picked_path(widget, path)
+    if kind == "epg" then
+      load_epg_path(path)
+    else
+      index_path(path)
+    end
+    return
+  end
+  local data = json_decode(body) or {}
+  if status ~= 200 then
+    set_status(tostring(data.error or "Could not open the file dialog"))
+    return
+  end
+  local path = trim(tostring(data.path or ""))
+  apply_picked_path(widget, path)
+  if not data.id then
+    set_status(empty_message)
+    return
+  end
+  active_job = tostring(data.id)
+  watch_job(active_job)
+end
+
 function browse_clicked()
-  local path = pick_file("m3u")
-  if path == nil then
-    set_status("Paste the full path to the .m3u file in M3U file, then click Index.")
-    return
-  end
-  if path == "" then
-    set_status("No file chosen.")
-    return
-  end
-  w_path:set_text(path)
-  index_clicked()
+  pick_and_run("m3u", w_path, "No file chosen.")
 end
 
 function browse_epg_clicked()
-  local path = pick_file("epg")
-  if path == nil then
-    set_status("Paste the full path to the XMLTV file in EPG file, then click Load.")
-    return
-  end
-  if path == "" then
-    set_status("No file chosen.")
-    return
-  end
-  w_epg:set_text(path)
-  load_epg_clicked()
+  pick_and_run("epg", w_epg, "No file chosen.")
 end
 
 function file_stem(path)
@@ -940,18 +1015,17 @@ function file_stem(path)
 end
 
 function load_epg_clicked()
+  load_epg_path(w_epg and w_epg:get_text() or "")
+end
+
+function load_epg_path(path)
   if not ensure_server() then
     return
   end
-  if active_job then
-    local running = fetch_job(active_job)
-    if running and running.state == "running" then
-      watch_job(active_job)
-      return
-    end
-    active_job = nil
+  if busy_job() then
+    return
   end
-  local path = clean_path(w_epg:get_text())
+  path = clean_path(path)
   if path == "" then
     set_status("Click Browse and choose the XMLTV guide.")
     return
@@ -1086,18 +1160,17 @@ function guide_clicked()
 end
 
 function index_clicked()
+  index_path(w_path and w_path:get_text() or "")
+end
+
+function index_path(path)
   if not ensure_server() then
     return
   end
-  if active_job then
-    local running = fetch_job(active_job)
-    if running and running.state == "running" then
-      watch_job(active_job)
-      return
-    end
-    active_job = nil
+  if busy_job() then
+    return
   end
-  local path = clean_path(w_path:get_text())
+  path = clean_path(path)
   if path == "" then
     set_status("Click Browse and choose the .m3u file.")
     return

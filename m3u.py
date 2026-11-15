@@ -27,9 +27,12 @@ def is_hls_file(path: Path) -> bool:
     else:
         text = raw.decode("utf-8", "ignore")
     head = text.lower()
+    # A stray HLS tag in an IPTV list must not collapse the whole file into one item.
+    if "group-title" in head or "tvg-id" in head or "tvg-name" in head:
+        return False
     if "#ext-x-targetduration" in head or "#ext-x-media-sequence" in head:
         return True
-    if "#ext-x-stream-inf" in head and "group-title" not in head:
+    if "#ext-x-stream-inf" in head:
         return True
     return False
 
@@ -66,15 +69,15 @@ def iter_channels(path: Path, origin: str) -> Iterator[dict]:
         line = line.strip()
         if not line:
             continue
-        if line.startswith("#EXTGRP:"):
+        if _starts(line, "#EXTGRP:"):
             pending_group = _clean(line[8:], 200) or pending_group
             continue
-        if line.startswith("#EXTVLCOPT:"):
+        if _starts(line, "#EXTVLCOPT:"):
             opt = _option(line[11:])
             if opt:
                 pending_opts.append(opt)
             continue
-        if line.startswith("#EXTINF:"):
+        if _starts(line, "#EXTINF:"):
             meta, name = _split_extinf(line[8:])
             pending_attrs = _parse_attrs(meta)
             pending_name = _clean(name, 300)
@@ -197,16 +200,30 @@ def _option(text: str) -> list[str] | None:
     return [key, value]
 
 
+def _starts(line: str, tag: str) -> bool:
+    return line.upper().startswith(tag)
+
+
+def _strip_quotes(text: str) -> str:
+    text = text.strip()
+    if len(text) >= 2 and text[0] == text[-1] and text[0] in {'"', "'"}:
+        return text[1:-1].strip()
+    return text
+
+
 def _plausible_address(line: str) -> bool:
-    if any(char in line for char in '{}"[]<>'):
+    text = _strip_quotes(line)
+    if not text or text.startswith("#"):
         return False
-    if "://" in line:
+    if any(char in text for char in "{}<>"):
+        return False
+    if "://" in text:
         return True
-    return not any(char.isspace() for char in line)
+    return not any(char.isspace() for char in text)
 
 
 def _resolve_url(token: str, origin: str, playlist: Path) -> str:
-    url = token.strip().strip('"').replace("\x00", "")
+    url = _strip_quotes(token.replace("\x00", ""))
     if not url or url.startswith("#") or len(url) > 4000:
         return ""
     if "://" in url:
