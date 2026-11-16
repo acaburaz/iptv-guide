@@ -59,10 +59,15 @@ class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
     def log_message(self, fmt: str, *args) -> None:
-        path = urlparse(self.path).path
-        if path.startswith(("/api/channels", "/api/player", "/api/jobs", "/api/ext/ping")):
+        # pythonw has no console. A failed write here drops the response, and the
+        # panel then reports that the index could not start.
+        try:
+            path = urlparse(self.path).path
+            if path.startswith("/api/") or sys.stderr is None:
+                return
+            sys.stderr.write("%s %s\n" % (self.address_string(), fmt % args))
+        except Exception:
             return
-        sys.stderr.write("%s %s\n" % (self.address_string(), fmt % args))
 
     def do_GET(self) -> None:
         try:
@@ -1028,6 +1033,43 @@ def selftest() -> None:
         sys.stdout = saved_out
         sys.stderr = saved_err
     assert "index-alive" in log_path.read_text(encoding="utf-8")
+
+    import player as player_mod
+
+    old_find = player_mod.find_vlc
+    old_check = subprocess.check_output
+    checks = {"n": 0}
+
+    def fake_find() -> Path:
+        return Path("C:/VideoLAN/vlc.exe")
+
+    def fake_check(*_args, **_kwargs):
+        checks["n"] += 1
+        return b"VLC version 3.0.21\n"
+
+    player_mod.find_vlc = fake_find
+    subprocess.check_output = fake_check
+    try:
+        probe = player_mod.VlcPlayer()
+        assert checks["n"] == 0, checks
+        assert probe.version_text() == "VLC version 3.0.21"
+        assert checks["n"] == 1
+    finally:
+        player_mod.find_vlc = old_find
+        subprocess.check_output = old_check
+
+    class _Quiet:
+        path = "/api/ext/index?path=C:/list.m3u"
+
+        def address_string(self) -> str:
+            return "127.0.0.1"
+
+    saved_err = sys.stderr
+    try:
+        sys.stderr = None
+        Handler.log_message(_Quiet(), "GET %s", "/api/ext/index")
+    finally:
+        sys.stderr = saved_err
     launcher = (ROOT / "vlc" / "start-index.cmd").read_text(encoding="utf-8")
     assert "WindowsApps" in launcher and "pythonw" in launcher
     assert "Python 3 was not found." in launcher

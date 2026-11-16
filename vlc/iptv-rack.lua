@@ -212,7 +212,12 @@ function http_get(path)
     "",
     ""
   }, "\r\n")
-  vlc.net.send(fd, request)
+  if not net_send_all(fd, request) then
+    if vlc.net.close then
+      vlc.net.close(fd)
+    end
+    return nil, nil
+  end
   local raw = ""
   local pollfds = {}
   pollfds[fd] = vlc.net.POLLIN
@@ -241,6 +246,18 @@ function http_get(path)
     body = string.sub(body, 1, length)
   end
   return status, body
+end
+
+function net_send_all(fd, data)
+  local sent = 0
+  while sent < #data do
+    local n = tonumber(vlc.net.send(fd, string.sub(data, sent + 1)))
+    if not n or n <= 0 then
+      return false
+    end
+    sent = sent + n
+  end
+  return true
 end
 
 function ping()
@@ -314,7 +331,7 @@ function ensure_server()
   end
   local note = tail_log("start.log")
   if string.find(note, "Python 3 was not found", 1, true) then
-    set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
+    set_status("Python 3 was not found. Install it, then open this panel again.")
     return false
   end
   local tries = 0
@@ -334,9 +351,9 @@ function ensure_server()
     detail = note
   end
   if detail ~= "" then
-    set_status("Could not start the index. " .. detail)
+    set_status(detail)
   else
-    set_status("Could not start the index. Install Python 3, quit VLC, and open this panel again.")
+    set_status("Python did not open the index. Install Python 3 and try again.")
   end
   return false
 end
@@ -1219,7 +1236,15 @@ function index_path(path)
   local status, body = http_get("/api/ext/index?path=" .. urlencode(path))
   local job = json_decode(body)
   if status ~= 200 or not job or not job.id then
-    set_status(job and job.error or "Could not start the index")
+    local err = ""
+    if job and type(job.error) == "string" and job.error ~= "" then
+      err = job.error
+    elseif status == nil then
+      err = "The index is not answering."
+    else
+      err = "Could not read that playlist."
+    end
+    set_status(err)
     return
   end
   active_job = tostring(job.id)
