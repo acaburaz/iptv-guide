@@ -126,7 +126,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, player.refresh() if _first(query, "fresh") == "1" else player.snapshot())
             return
         if path == "/api/ext/ping":
-            self._json(200, {"ok": True, "version": EXT_VERSION})
+            self._json(200, {"ok": True, "version": EXT_VERSION, "app": "iptv-guide"})
             return
         if path == "/api/ext/public":
             url = _first(query, "url").strip()
@@ -999,6 +999,12 @@ def selftest() -> None:
     imported_id = None
     plus_id = None
     try:
+        with urllib.request.urlopen(
+            f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/ping",
+            timeout=5,
+        ) as res:
+            ping = json.loads(res.read().decode("utf-8"))
+        assert ping.get("app") == "iptv-guide", ping
         with urllib.request.urlopen(
             f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
             timeout=10,

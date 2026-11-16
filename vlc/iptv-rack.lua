@@ -262,7 +262,8 @@ end
 
 function ping()
   local status, body = http_get("/api/ext/ping")
-  return status == 200 and body and string.find(body, '"version"', 1, true) ~= nil
+  -- An older index can answer "version" and then drop the real request.
+  return status == 200 and body and string.find(body, "iptv-guide", 1, true) ~= nil
 end
 
 function tail_log(name)
