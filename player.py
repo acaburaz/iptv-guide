@@ -52,7 +52,10 @@ def _popen_kwargs() -> dict:
 class VlcPlayer:
     def __init__(self):
         self.path = find_vlc()
-        self.version = _version(self.path) if self.path else ""
+        # Do not run vlc.exe here. The panel starts this process from inside VLC
+        # and then waits for the port; a second vlc.exe blocks until that wait ends.
+        self._version = ""
+        self._version_checked = self.path is None
         self._lock = threading.RLock()
         self._proc: subprocess.Popen | None = None
         self._sock: socket.socket | None = None
@@ -74,7 +77,7 @@ class VlcPlayer:
         return {
             "available": self.path is not None,
             "path": str(self.path or ""),
-            "version": self.version,
+            "version": self.version_text(),
             "running": running,
             "playing": state["playing"] and running,
             "paused": state["paused"] and running,
@@ -84,6 +87,12 @@ class VlcPlayer:
             "volume": round(self._volume * 100 / 256),
             "error": state["error"],
         }
+
+    def version_text(self) -> str:
+        if not self._version_checked:
+            self._version_checked = True
+            self._version = _version(self.path) if self.path else ""
+        return self._version
 
     def refresh(self) -> dict:
         with self._lock:

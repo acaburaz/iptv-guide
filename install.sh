@@ -5,9 +5,11 @@ set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 if command -v python >/dev/null 2>&1; then
-  PYTHON=python
+  PYTHON=(python)
 elif command -v python3 >/dev/null 2>&1; then
-  PYTHON=python3
+  PYTHON=(python3)
+elif command -v py >/dev/null 2>&1; then
+  PYTHON=(py -3)
 else
   echo "Python 3 is required."
   echo "Install it from https://www.python.org/downloads/ and run this again."
@@ -26,7 +28,7 @@ else
   export IPTV_ROOT="$(pwd)"
 fi
 
-"$PYTHON" -c "import os, pathlib; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); print('Installed', dest)"
+"${PYTHON[@]}" -c "import os, pathlib; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); print('Installed', dest)"
 
 echo
 echo "Quit VLC completely, open it again, then choose View -> IPTV Guide."

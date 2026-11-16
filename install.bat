@@ -1,8 +1,10 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-where python >nul 2>&1
-if errorlevel 1 (
+set "RUNPY="
+where python >nul 2>&1 && set "RUNPY=python"
+if not defined RUNPY where py >nul 2>&1 && set "RUNPY=py -3"
+if not defined RUNPY (
   echo Python 3 is required.
   echo Install it from https://www.python.org/downloads/ and run this again.
   pause
@@ -14,7 +16,7 @@ if not defined APPDATA (
   exit /b 1
 )
 set "IPTV_ROOT=%CD%"
-python -c "import os, pathlib; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); print('Installed', dest)"
+%RUNPY% -c "import os, pathlib, sys; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); data = root / 'data'; data.mkdir(exist_ok=True); exe = pathlib.Path(sys.executable); sib = exe.with_name('pythonw.exe'); (data / 'python.txt').write_text(str(sib if sib.is_file() else exe), encoding='utf-8'); print('Installed', dest)"
 if errorlevel 1 (
   pause
   exit /b 1
