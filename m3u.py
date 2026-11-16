@@ -6,23 +6,32 @@ fake channels. IPTV lists are many #EXTINF entries, each with its own URL.
 
 from __future__ import annotations
 
+import gzip
 import re
 from pathlib import Path
 from typing import Iterator
 from urllib.parse import urljoin
 
 _ATTR = re.compile(
-    r'([A-Za-z0-9_-]+)="([^"]*)"|([A-Za-z0-9_-]+)=([^\s"]+)'
+    r"""([A-Za-z0-9_-]+)="([^"]*)"|([A-Za-z0-9_-]+)='([^']*)'|([A-Za-z0-9_-]+)=([^\s"']+)"""
 )
 _ALLOWED_OPTS = {"http-user-agent", "http-referrer", "http-reconnect"}
-_LINE_LIMIT = 64 * 1024
+_PIPE_OPTS = {
+    "user-agent": "http-user-agent",
+    "http-user-agent": "http-user-agent",
+    "referer": "http-referrer",
+    "referrer": "http-referrer",
+    "http-referer": "http-referrer",
+    "http-referrer": "http-referrer",
+}
+_LINE_LIMIT = 1024 * 1024
 
 
 def is_hls_file(path: Path) -> bool:
     """True when the file is an HLS document rather than a channel list."""
-    with path.open("rb") as handle:
+    with _open_binary(path) as handle:
         raw = handle.read(256 * 1024)
-    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+    if raw.startswith((b"\xff\xfe", b"\xfe\xff")) or _utf16_without_bom(raw):
         text = raw.decode("utf-16", "ignore")
     else:
         text = raw.decode("utf-8", "ignore")
@@ -39,11 +48,11 @@ def is_hls_file(path: Path) -> bool:
 
 def looks_like_playlist(path: Path) -> bool:
     """True for an M3U or a plain list of stream addresses. JSON catalogs are not playlists."""
-    with path.open("rb") as handle:
+    with _open_binary(path) as handle:
         raw = handle.read(65536)
     if raw.startswith(b"\xef\xbb\xbf"):
         raw = raw[3:]
-    elif raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+    elif raw.startswith((b"\xff\xfe", b"\xfe\xff")) or _utf16_without_bom(raw):
         raw = raw.decode("utf-16", "replace").encode("utf-8")
     head = raw.lstrip()
     if head.startswith((b"{", b"[")):
@@ -84,13 +93,14 @@ def iter_channels(path: Path, origin: str) -> Iterator[dict]:
             continue
         if line.startswith("#"):
             continue
-        if not _plausible_address(line):
+        address, pipe_opts = _split_pipe(line)
+        if not _plausible_address(address):
             pending_name = ""
             pending_attrs = {}
             pending_opts = []
             continue
 
-        url = _resolve_url(line, origin, path)
+        url = _resolve_url(address, origin, path)
         if not url:
             pending_name = ""
             pending_attrs = {}
@@ -107,7 +117,7 @@ def iter_channels(path: Path, origin: str) -> Iterator[dict]:
             "tvg_id": _clean(attrs.get("tvg-id", ""), 200),
             "tvg_name": _clean(attrs.get("tvg-name", ""), 300),
             "logo": _clean(attrs.get("tvg-logo", ""), 1000),
-            "opts": list(pending_opts),
+            "opts": list(pending_opts) + pipe_opts,
         }
         pending_name = ""
         pending_attrs = {}
@@ -131,11 +141,24 @@ def _single(path: Path, origin: str) -> dict:
     }
 
 
-def _iter_lines(path: Path) -> Iterator[str]:
+def _open_binary(path: Path):
+    """Open a playlist, including one the browser saved gzip-compressed."""
     with path.open("rb") as handle:
+        magic = handle.read(2)
+    if magic == b"\x1f\x8b":
+        return gzip.open(path, "rb")
+    return path.open("rb")
+
+
+def _utf16_without_bom(raw: bytes) -> bool:
+    return len(raw) >= 4 and raw[1] == 0 and raw[3] == 0 and raw[0] != 0
+
+
+def _iter_lines(path: Path) -> Iterator[str]:
+    with _open_binary(path) as handle:
         start = handle.read(4)
         handle.seek(0)
-        if start.startswith((b"\xff\xfe", b"\xfe\xff")):
+        if start.startswith((b"\xff\xfe", b"\xfe\xff")) or _utf16_without_bom(start):
             text = handle.read().decode("utf-16", "replace").replace("\x00", "")
             yield from text.splitlines()
             return
@@ -181,12 +204,30 @@ def _parse_attrs(meta: str) -> dict[str, str]:
     if "=" not in meta:
         return {}
     found: dict[str, str] = {}
-    for key_q, val_q, key_u, val_u in _ATTR.findall(meta):
-        if key_q:
-            found[key_q.lower()] = val_q.strip()
-        else:
-            found[key_u.lower()] = val_u.strip()
+    for match in _ATTR.finditer(meta):
+        key = next(part for part in (match.group(1), match.group(3), match.group(5)) if part)
+        value = next(part for part in (match.group(2), match.group(4), match.group(6)) if part is not None)
+        found[key.lower()] = value.strip()
     return found
+
+
+def _split_pipe(line: str) -> tuple[str, list[list[str]]]:
+    """Kodi-style `url|User-Agent=...&Referer=...` becomes a URL plus VLC options."""
+    if "|" not in line:
+        return line, []
+    url, extra = line.split("|", 1)
+    opts: list[list[str]] = []
+    for part in re.split(r"[|&]", extra):
+        if "=" not in part:
+            continue
+        key, value = part.split("=", 1)
+        mapped = _PIPE_OPTS.get(key.strip().lower().replace("_", "-"))
+        if not mapped:
+            continue
+        opt = _option(f"{mapped}={value.strip()}")
+        if opt:
+            opts.append(opt)
+    return url, opts
 
 
 def _option(text: str) -> list[str] | None:
@@ -215,16 +256,17 @@ def _plausible_address(line: str) -> bool:
     text = _strip_quotes(line)
     if not text or text.startswith("#"):
         return False
-    if any(char in text for char in "{}<>"):
-        return False
+    # Provider "plus" lists put {utc} and brace characters inside real stream URLs.
     if "://" in text:
         return True
+    if any(char in text for char in "{}<>"):
+        return False
     return not any(char.isspace() for char in text)
 
 
 def _resolve_url(token: str, origin: str, playlist: Path) -> str:
     url = _strip_quotes(token.replace("\x00", ""))
-    if not url or url.startswith("#") or len(url) > 4000:
+    if not url or url.startswith("#") or len(url) > 8000:
         return ""
     if "://" in url:
         return url

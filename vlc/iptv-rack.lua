@@ -292,6 +292,24 @@ function tail_log(name)
   return last
 end
 
+function show_problem(text)
+  text = trim(text or "")
+  if text == "" then
+    text = "Python did not open the index."
+  end
+  local short = text
+  if #short > 70 then
+    short = string.sub(short, 1, 70)
+  end
+  set_status(short)
+  if w_list then
+    pcall(function()
+      w_list:clear()
+      w_list:add_value(text, 1)
+    end)
+  end
+end
+
 function ensure_server()
   PORT = 8765
   if ping() then
@@ -306,12 +324,12 @@ function ensure_server()
   end
   PORT = 8765
   local status = http_get("/api/sources")
-  if status then
-    set_status("An older index is still running. Close that console, then click Browse.")
+  if status == 200 then
+    show_problem("Close the old index window, then click Index.")
     return false
   end
   if not os or not os.execute then
-    set_status("Python 3 has to be on PATH. Install it, then open this panel again.")
+    show_problem("Install Python 3, then open this panel again.")
     return false
   end
   set_status("Starting the index...")
@@ -324,18 +342,14 @@ function ensure_server()
       found = true
     end
   end
+  -- Wait for the finder to finish. It detaches Python itself, then exits.
   if found then
-    os.execute('start "IPTV Guide" /MIN "' .. starter .. '"')
+    os.execute('cmd.exe /c "' .. starter .. '"')
   else
-    os.execute('start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
-  end
-  local note = tail_log("start.log")
-  if string.find(note, "Python 3 was not found", 1, true) then
-    set_status("Python 3 was not found. Install it, then open this panel again.")
-    return false
+    os.execute('cmd.exe /c start "IPTV Guide" /MIN pythonw "' .. APP_DIR .. '\\app.py" --no-browser --port 8765')
   end
   local tries = 0
-  while tries < 20 do
+  while tries < 40 do
     pause_ms(400)
     local file_port = read_port_file()
     if file_port then
@@ -347,14 +361,16 @@ function ensure_server()
     tries = tries + 1
   end
   local detail = tail_log("index.log")
+  if detail == "" or string.sub(detail, 1, 9) == "starting " or string.sub(detail, 1, 11) == "looking for" then
+    detail = tail_log("start.log")
+  end
+  if string.sub(detail, 1, 9) == "starting " or string.sub(detail, 1, 11) == "looking for" then
+    detail = "Python did not stay running."
+  end
   if detail == "" then
-    detail = note
+    detail = "Python 3 was not found."
   end
-  if detail ~= "" then
-    set_status(detail)
-  else
-    set_status("Python did not open the index. Install Python 3 and try again.")
-  end
+  show_problem(detail)
   return false
 end
 
@@ -932,7 +948,11 @@ function watch_job(id)
       set_status("Lost contact with the index.")
       return
     end
-    set_status(job_line(job))
+    if job.state == "error" then
+      show_problem(job_line(job))
+    else
+      set_status(job_line(job))
+    end
     if job.state ~= "running" then
       active_job = nil
       if job.state == "done" and job.kind == "epg" then
@@ -1244,7 +1264,7 @@ function index_path(path)
     else
       err = "Could not read that playlist."
     end
-    set_status(err)
+    show_problem(err)
     return
   end
   active_job = tostring(job.id)

@@ -6,6 +6,7 @@ VLC asks for one page of channels and plays one stream. The playlist stays here.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import os
 import subprocess
@@ -750,6 +751,46 @@ def selftest() -> None:
     assert odd_rows[0]["name"] == "SVT" and odd_rows[0]["group"] == "Sweden", odd_rows
     assert odd_rows[0]["url"] == "http://example.invalid/svt", odd_rows
     assert odd_rows[1]["url"] == "http://[2001:db8::1]/live", odd_rows
+
+    downloads = tmp / "Downloads"
+    downloads.mkdir()
+    plus = downloads / "tv_channels_S997ABLN_plus.m3u"
+    plus.write_text(
+        "#EXTM3U url-tvg=\"http://epg.example/xmltv.php?username=S997ABLN&password=p%7Bass%7D\"\n"
+        "#EXTINF:-1 tvg-id=\"svt1.se\" tvg-name=\"SVT 1\" tvg-logo=\"http://logo.example/svt.png\" "
+        "group-title=\"|SE| NYHETER\" catchup=\"default\" catchup-days=\"7\" "
+        "catchup-source=\"http://line.example:8080/live/S997ABLN/p{ass}/1.ts?utc={utc}&lutc={lutc}\",SVT 1 HD\n"
+        "http://line.example:8080/live/S997ABLN/p{ass}/1.ts\n"
+        "#EXTINF:-1 tvg-id=\"\" tvg-name=\"TV4\" tvg-logo=\"http://logo.example/tv4.png\" "
+        "group-title='|SE| UNDERHALLNING',TV4\n"
+        "http://line.example:8080/live/S997ABLN/secret/2.ts|User-Agent=Mozilla/5.0 (Windows NT 10.0)&Referer=http://line.example/\n"
+        "#EXTINF:-1 group-title=\"Sport\",Match\n"
+        "http://line.example:8080/streaming/timeshift.php?username=S997ABLN&password=secret&stream=3&start={utc}&duration=120\n",
+        encoding="utf-8",
+    )
+    plus_rows = list(iter_channels(plus, f"path:{plus}"))
+    assert len(plus_rows) == 3, plus_rows
+    assert plus_rows[0]["name"] == "SVT 1 HD" and plus_rows[0]["group"] == "|SE| NYHETER", plus_rows[0]
+    assert plus_rows[0]["url"] == "http://line.example:8080/live/S997ABLN/p{ass}/1.ts", plus_rows[0]
+    assert plus_rows[1]["group"] == "|SE| UNDERHALLNING", plus_rows[1]
+    assert plus_rows[1]["url"] == "http://line.example:8080/live/S997ABLN/secret/2.ts", plus_rows[1]
+    assert plus_rows[1]["opts"] == [
+        ["http-user-agent", "Mozilla/5.0 (Windows NT 10.0)"],
+        ["http-referrer", "http://line.example/"],
+    ], plus_rows[1]
+    assert "{utc}" in plus_rows[2]["url"], plus_rows[2]
+    gzipped = downloads / "tv_channels_S997ABLN_plus.m3u.gz"
+    with gzip.GzipFile(gzipped, "wb") as handle:
+        handle.write(plus.read_bytes())
+    assert looks_like_playlist(gzipped)
+    assert len(list(iter_channels(gzipped, f"path:{gzipped}"))) == 3
+    wide = downloads / "wide.m3u"
+    wide.write_bytes(
+        "#EXTM3U\n#EXTINF:-1 group-title=\"Nyheter\",Rapport\nhttp://example.invalid/rapport\n".encode("utf-16-le")
+    )
+    wide_rows = list(iter_channels(wide, "name:wide.m3u"))
+    assert wide_rows and wide_rows[0]["name"] == "Rapport", wide_rows
+
     mixed = tmp / "mixed.m3u"
     mixed.write_text(
         "#EXTM3U\n#EXT-X-TARGETDURATION:10\n"
@@ -956,6 +997,7 @@ def selftest() -> None:
     thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     thread.start()
     imported_id = None
+    plus_id = None
     try:
         with urllib.request.urlopen(
             f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
@@ -990,6 +1032,21 @@ def selftest() -> None:
                 break
             time.sleep(0.05)
         assert state and state["state"] == "done", state
+        with urllib.request.urlopen(
+            f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/index?path=" + quote(str(plus)),
+            timeout=10,
+        ) as res:
+            plus_job = json.loads(res.read().decode("utf-8"))
+        assert plus_job.get("id"), plus_job
+        deadline = time.time() + 10
+        plus_state = None
+        while time.time() < deadline:
+            plus_state = _job_payload(plus_job["id"])
+            if plus_state and plus_state["state"] != "running":
+                break
+            time.sleep(0.05)
+        assert plus_state and plus_state["state"] == "done" and plus_state["count"] == 3, plus_state
+        plus_id = plus_state["source_id"]
         chosen_path["value"] = ""
         with urllib.request.urlopen(
             f"http://127.0.0.1:{httpd.server_address[1]}/api/ext/pick?kind=m3u",
@@ -1015,6 +1072,8 @@ def selftest() -> None:
             raise AssertionError("picker error should be HTTP 400")
     finally:
         _choose_file = original_choose
+        if plus_id:
+            catalog.delete_source(plus_id)
         if imported_id:
             catalog.delete_source(imported_id)
         httpd.shutdown()
@@ -1071,8 +1130,10 @@ def selftest() -> None:
     finally:
         sys.stderr = saved_err
     launcher = (ROOT / "vlc" / "start-index.cmd").read_text(encoding="utf-8")
-    assert "WindowsApps" in launcher and "pythonw" in launcher
+    assert "WindowsApps" in launcher and "pythonw" in launcher and "python.txt" in launcher
+    assert "ExecutablePath" in launcher
     assert "Python 3 was not found." in launcher
+    assert b"\r\n" in (ROOT / "vlc" / "start-index.cmd").read_bytes()
 
     print(
         f"SELFTEST_OK import_s={elapsed:.2f} search_ms={search_ms:.1f} "

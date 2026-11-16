@@ -16,7 +16,7 @@ if not defined APPDATA (
   exit /b 1
 )
 set "IPTV_ROOT=%CD%"
-%RUNPY% -c "import os, pathlib; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); print('Installed', dest)"
+%RUNPY% -c "import os, pathlib, sys; root = pathlib.Path(os.environ['IPTV_ROOT']); text = (root / 'vlc' / 'iptv-rack.lua').read_text(encoding='utf-8').replace('__IPTV_RACK_DIR__', str(root)); dest = pathlib.Path(os.environ['APPDATA']) / 'vlc' / 'lua' / 'extensions' / 'iptv-rack.lua'; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(text, encoding='utf-8', newline='\n'); data = root / 'data'; data.mkdir(exist_ok=True); exe = pathlib.Path(sys.executable); sib = exe.with_name('pythonw.exe'); (data / 'python.txt').write_text(str(sib if sib.is_file() else exe), encoding='utf-8'); print('Installed', dest)"
 if errorlevel 1 (
   pause
   exit /b 1
